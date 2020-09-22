@@ -29,4 +29,4 @@ jobs:
    - name: Set Environment Variable
      env:
        SPOTIFY_SECRET_JC: ${{ secrets.SPOTIFY_SECRET_JC }}
-     run: echo '::set-env name:SPOTIFY_SECRET::"$SPOTIFY_SECRET_JC"'
+     run: echo '::set-env name=SPOTIFY_SECRET::"$SPOTIFY_SECRET_JC"'
