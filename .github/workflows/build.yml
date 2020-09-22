@@ -35,6 +35,5 @@ jobs:
       - name: Connect Secrets to Environment
         env:
           SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET_JC }}
-        run: |
-          echo Testing?
+        run: echo '::set-env name=SPOT_SEC:"$SPOTIFY_SECRET"'
     
