@@ -15,3 +15,10 @@ Back End
     - Robert Dalton
 ```
 
+## Typography 
+
+font-family: 'Poiret One', cursive;
+
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+
+
