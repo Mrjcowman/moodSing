@@ -11,8 +11,8 @@ Front End
 ```
 ```
 Back End 
-    - Jacob Cowan
-    - Andrew Crow
+    - Jacob Cowan - Git Master
+    - Andrew Crow - Project Manager
     - Robert Dalton
 ```
 ------------------
