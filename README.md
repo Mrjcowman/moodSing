@@ -32,3 +32,14 @@ After User Input Mobile Wireframe
 
 Weather to Mood Index
 ![ Weather to Mood Index ](./images/weather-mood-to-spotify-param-v2.png)
+
+## API's
+
+Weather:
+api.weather.gov
+
+Music Content/Playlist and info:
+Spotify Wev API
+
+Location info (lat/long):
+https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
