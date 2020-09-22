@@ -1,6 +1,7 @@
 # moodSing 
 moodSing is a weather app that uses the user's current location to determine weather conditions then play music to fit the current weather. The user can also input their current mood and the site will play music according to their mood. These features bypass the need for users to explain their mood as well as introducing new genres of music to users. 
 
+------------------
 ## Roles
 
 ```
@@ -14,6 +15,12 @@ Back End
     - Andrew Crow
     - Robert Dalton
 ```
+------------------
+## Typography 
+
+font-family: 'Poiret One', cursive;
+
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
 
 -------------------
 ## Visuals
@@ -33,6 +40,7 @@ After User Input Mobile Wireframe
 Weather to Mood Index
 ![ Weather to Mood Index ](./images/weather-mood-to-spotify-param-v2.png)
 
+--------------------
 ## API's
 
 Weather:
@@ -43,3 +51,4 @@ Spotify Wev API
 
 Location info (lat/long):
 https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+
