@@ -1,25 +1,18 @@
+
+nav{
+    background: #022340;
+}
 .container{
     margin-left: 5vw ;
     border: black;
-    background: teal; 
-    height: 300px;
-    padding: 15px 15px;
+    /* height: 300px; */
+    margin: 20px;
+    padding: 20px 20px 20px 20px;
     display: flex; 
     flex-direction: row;
     justify-content: space-around;
 }
  
- .box {
-        
-        background: beige;
-        border: 3px solid black;
-        border-radius: 25px;
-        padding: 15px 15px;
-        height: 250px;
-        width: 150px;  
-        float: left; 
-    
-    }
     
 #playList {
     text-align: center;
@@ -27,8 +20,8 @@
     background: beige;
     border-radius: 25px ;
     padding: 15px 15px; 
-    height: 400px;
-    width: 300px; 
+    height: 600px;
+    /* width: 300px;  */
     margin-left: 30px;
 
 
