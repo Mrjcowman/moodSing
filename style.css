@@ -1,3 +1,8 @@
+body {
+    font-family: 'poiret one', cursive;
+
+
+
 .container{
     margin-left: 5vw ;
     border: black;
@@ -9,9 +14,8 @@
     justify-content: space-around;
 }
  
- .box {
-        
-        background: beige;
+ .box { 
+        background: beige; */
         border: 3px solid black;
         border-radius: 25px;
         padding: 15px 15px;
@@ -20,8 +24,7 @@
         float: left; 
     
     }
-    
-#playList {
+.playList {
     text-align: center;
     border: 3px solid black; 
     background: beige;
@@ -31,12 +34,8 @@
     width: 300px; 
     margin-left: 30px;
 
-
 }
 
-body {
-    font-family: 'poiret one', cursive;
-}
 
 .default {
     background: #022340;
@@ -164,3 +163,4 @@ prompt.snow {
     }
     /* .background-theme_snow-5-hex { background: #0D0D0D; } */
 
+}
