@@ -5,6 +5,16 @@
 // location api
 // ====================================================================
 // current location variable = long/lat (from navigator)
+function browserSupportsGeolocation {
+    if (navigator.geolocation) {
+        console.log("Supports Geo"); 
+    } else {
+        // Latitude and longitude of UW Campus
+        console.log("Does not support geo");
+        console.log(47.655548,-122.303200);
+    }
+
+}
 
 
 
