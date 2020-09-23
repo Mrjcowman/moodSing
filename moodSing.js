@@ -93,6 +93,17 @@ function localForecast(grid) {
 // take user input to match with a preset mood
 // pull spotify perameters for preset mood from mood.js
 
+function moodMatcher(userMood) {
+  const moodMatch = mood.find(moodObject => moodObject.moodType = userMood.toLowerCase());
+  console.log(moodMatch);
+  let valence = moodMatch.valence,
+      energy =  moodMatch.energy,
+      tempo = moodMatch.tempo,
+      loudness = moodMatch.loudness,
+      danceability = moodMatch.danceability;
+  console.log(valence, energy, tempo, loudness,danceability);
+  return (valence, energy, tempo, loudness,danceability)
+}
 
 // mood.js
 // ====================================================================

@@ -20,7 +20,7 @@
                 description =   The overall estimated tempo of a track in beats per minute (BPM). 
                                 In musical terminology, tempo is the speed or pace of a given 
                                 piece and derives directly from the average beat duration.
-
+D
     Loudness    value type =    float
                 description =   The overall loudness of a track in decibels (dB). Loudness 
                                 values are averaged across the entire track and are useful for 
@@ -41,15 +41,16 @@ const mood = [
         valence : .9,
         energy : .5,
         tempo :  150,
-        Loudness : 85,
-        Danceability : .7
+        loudness : 85,
+        danceability : .7
     },
     {
         moodType : "Sad",
         valence : .2,
         energy : .3,
         tempo :  100,
-        Loudness : 90,
-        Danceability : .3
+        loudness : 90,
+        danceability : .3
     }
 ]
+
