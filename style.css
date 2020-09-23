@@ -1,13 +1,36 @@
 .container{
-    border: 40px solid beige;
+    margin-left: 5vw ;
+    border: black;
+    background: teal; 
+    height: 300px;
+    padding: 15px 15px;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
 }
-.box{
-    border: 10px solid black; 
-    margin-left: 30px; 
-    margin-top: 50px;
-    display: inline;
-    padding: 50px; 
-    top: 30px;
 
     
+ .box {
+        
+        background: beige;
+        border: 3px solid black;
+        border-radius: 25px;
+        padding: 15px 15px;
+        height: 250px;
+        width: 150px;  
+        float: left; 
+    
+    }
+    
+#playList {
+    text-align: center;
+    border: 3px solid black; 
+    background: beige;
+    border-radius: 25px ;
+    padding: 15px 15px; 
+    height: 400px;
+    width: 300px; 
+    margin-left: 30px;
+
+
 }
