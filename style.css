@@ -1,19 +1,27 @@
+<<<<<<< HEAD
 body {
     font-family: 'poiret one', cursive;
 
 
 
+=======
+
+nav{
+    background: #022340;
+}
+>>>>>>> dev
 .container{
     margin-left: 5vw ;
     border: black;
-    background: teal; 
-    height: 300px;
-    padding: 15px 15px;
+    /* height: 300px; */
+    margin: 20px;
+    padding: 20px 20px 20px 20px;
     display: flex; 
     flex-direction: row;
     justify-content: space-around;
 }
  
+<<<<<<< HEAD
  .box { 
         background: beige; */
         border: 3px solid black;
@@ -25,13 +33,17 @@ body {
     
     }
 .playList {
+=======
+    
+#playList {
+>>>>>>> dev
     text-align: center;
     border: 3px solid black; 
     background: beige;
     border-radius: 25px ;
     padding: 15px 15px; 
-    height: 400px;
-    width: 300px; 
+    height: 600px;
+    /* width: 300px;  */
     margin-left: 30px;
 
 }
