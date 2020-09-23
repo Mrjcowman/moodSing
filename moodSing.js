@@ -5,6 +5,39 @@
 // location api
 // ====================================================================
 // current location variable = long/lat (from navigator)
+function browserSupportsGeolocation {
+    if (navigator.geolocation) {
+        showPrompt = function(){$("#location-prompt").attr("style","block")}, 
+    } else {
+        // Latitude and longitude of UW Campus
+        console.log("Does not support geo");
+        console.log(47.655548,-122.303200);
+    }
+
+}
+$("#buttonLocate").on("click", function (event) {
+    event.preventDefault();
+    let positionStart,
+        showPrompt = function(){$("#location-prompt").attr("style","block")},
+        hidePrompt = function(){$("#location-prompt").attr("style","none")},
+        promptTimeOut = setTimeout(showPrompt, 6000),
+        geoSuccess = function(position){
+          hidePrompt
+          clearTimeout(promptTimeOut);
+          positionStart = position;
+          let lat = positionStart.coords.latitude;
+          let lon = positionStart.coords.longitude;
+          console.log(lat,lon);
+        },
+        geoError = function(error){
+          switch (error.code) {
+            case error.TIMEOUT:
+              showPrompt
+              break;
+          }
+        };
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+  })
 
 
 
