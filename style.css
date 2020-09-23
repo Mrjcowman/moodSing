@@ -11,103 +11,130 @@
 }
 body {
     font-family: 'poiret one', cursive;
-
 }
 
-/* default
-    background color */
-  .default-background  { 
-      background: #022340; }
-    /* prompt background */
-  .default-prompt  { 
-      background: #64798C; }
+.default {
+    background: #022340;
+    }
+prompt.default  { 
+    background: #64798C; 
+    }
     /* header and footer */
-   .default-head-foot { 
-       background: #B0B7BF; }
+header.default, footer.default { 
+    background: #B0B7BF;
+     }
      /* weather container */
-   .default-weather { 
-       background: #F2DC6D; }
+ .box.default { 
+    background: #F2DC6D; 
+    }
      /* extra background  { background: #A6A160; } */
 
 /* Few clouds: */
-    
-    .few-clouds-background { 
-        background: #E2DAFE; }
-    .few-clouds-2-hex { background: #0583F2; }
-    
-    .few-clouds-head-foot { 
-        background: #94C5FF; }
-    .few-clouds-weather { 
-        background: #0186FC; }
-    
-    .few-clouds-prompt { 
-        background: #83B8FE; }
+.fewClouds {
+    background: #E2DAFE;
+    }      
+header.fewClouds, footer.fewClouds { 
+    background-color: #94C5FF;
+    background: #0583F2;
+    }
+.box.fewClouds { 
+    background: #0186FC; 
+    }   
+prompt.fewClouds { 
+    background: #83B8FE; 
+    }
 
 /* Sunny weather: */
-    .sunny-background {
-        background: #F2CB05 }
-    .sunny-head-foot { 
-        background: #59A8D9; }
-    .sunny-weather 
-        { background: #034AA6; }
-    .sunny-prompt { 
-        background: #0477BF; }
+.sunny {
+    background: #F2CB05 
+    }
+header.sunny, footer.sunny { 
+    background: #59A8D9; 
+    }
+.box.sunny { 
+    background: #034AA6; 
+    }
+prompt.sunny { 
+        background: #0477BF; 
+    }
 
 /* extra color { background: #BF7E04; } */
 
 /* rain: */
-    .rain-background { 
-        background: #395059; }
-    .rain-head-foot { 
-        background: #949FA6; }
-    .rain-weather { 
-        background: #2B4032; }
-    .rain-prompt { 
-        background: #395059; }
+.rain{ 
+    background: #395059; 
+    }
+header.rain, footer.rain { 
+    background: #949FA6; 
+    }
+box.rain { 
+    background: #2B4032; 
+    }
+prompt.rain { 
+    background: #395059; 
+    }
 /* extra color { background: #F0F2F2; } */
 
 /* partly cloudy { */
-    .partly-cloudy-background { 
-        background: #6387A6; }
-    .partly-cloudy-head-foot { 
-        background: #024059; }
-    .partly-cloudy-weather {
-        background: lightgoldenrodyellow;}
-    .partly-cloudy-prompt { 
-        background: #BABDBF; }
-/* .background-theme_partly-cloudly-1-hex { background: #979DA6; }
-.background-theme_partly-cloudly-3-hex { background: #023859; } */
+.partlyCloudy { 
+    background: #6387A6;
+    }
+header.partlyCloudy, footer.partlyCloudy { 
+    background-color: #024059; 
+    background: #979DA6;
+    }
+box.partlyCloudy {
+    background: lightgoldenrodyellow;
+    }
+prompt.partlyCloudy { 
+    background-color: #BABDBF; 
+    background: #023859;
+    }
+/* .background-theme_partly-cloudly-3-hex { background: #023859; } */
 
 /* Thunderstorm: */
-    .thunderstorm-background { 
-        background: #A692A2; }
-    .thunderstorm-head-foot { 
-        background: #0D0D0D; }
-    .thunderstorm-weather { 
-        background: #171726; }
-    .thunderstorm-prompt { 
-        background: #534A59; }
+.thunderstorm { 
+    background: #A692A2; 
+    }
+header.thunderstorm, footer.thunderstorm { 
+    background: #0D0D0D; 
+    }
+box.thunderstorm { 
+    background: #171726; 
+    }
+prompt.thunderstorm { 
+    background: #534A59; 
+    }
     /* .background-theme_thunderstrom-1-hex { background: #D9BFCD; } */
 
 /* Mist: */
-    .mist-background { 
-        background: #F2DAC4; }
-    .mist-head-foot { 
-        background: #BFA89B; }
-    .mist-weather { 
-        background: #BFAF8F; }
-    .mist-prompt { 
-        background: #3E5956; }
+.mist { 
+    background-color: #F2DAC4;
+    background: #3E5956; 
+    }
+.mist-head-foot { 
+    background: #BFA89B; 
+    }
+.mist-weather { 
+    background: #BFAF8F; 
+    }
+.mist-prompt { 
+    background: #3E5956; 
+    }
     /* .background-theme_mist-1-hex { background: #142626; } */
 
 
 /* Snow: */
-    .snow-background { 
-        background: #7C92A6; }
-    .snow-head-foot { 
-        background: #454E59; }
-    .snow-weather { 
-        background: #DCE8F2; }
-    .snow-prompt { 
-        background: #BACBD9; }
+.snow {
+    background: #7C92A6; 
+    }
+header.snow header.footer { 
+    background: #454E59; 
+    }
+.box.snow { 
+    background: #DCE8F2; 
+    }
+prompt.snow { 
+    background: #BACBD9; 
+    }
     /* .background-theme_snow-5-hex { background: #0D0D0D; } */
