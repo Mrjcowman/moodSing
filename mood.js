@@ -37,16 +37,19 @@
 
 const mood = [
     {
-        moodtype: Happy,
-        params: {
-            
-        }
-        valence: .9,
-        answers: {
-            a: "Using args.length property",
-            b: "Using arguments.length property",
-            c: "Both of the above",
-            d: "None of the above"
-        },
-        correctAnswer: "b"
+        moodType : "Happy",
+        valence : .9,
+        energy : .5,
+        tempo :  150,
+        Loudness : 85,
+        Danceability : .7
     },
+    {
+        moodType : "Sad",
+        valence : .2,
+        energy : .3,
+        tempo :  100,
+        Loudness : 90,
+        Danceability : .3
+    }
+]
