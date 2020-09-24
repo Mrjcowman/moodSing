@@ -165,7 +165,7 @@ function localForecast(grid) {
 // ====================================================================
 // switch statement to apply backrground/theme change
 
-function changeBackgroundSchemeChange() {
+function themeChange() {
 
     if (imageUrl == null) {
 
@@ -180,14 +180,14 @@ function changeBackgroundSchemeChange() {
         case "nwind_few":
         case "wind_sct":
         case "nwind_sct":
-            scheme(fewCloudsScheme);
+            scheme.fewClouds;
             break;
         case "skc":
         case "nskc":
         case "wind_skc":
         case "nwind_skc":
         case "hot":
-            scheme(sunnyWeatherScheme);
+            scheme.sunny;
             break;
         case "shra":
         case "nshra":
@@ -203,7 +203,7 @@ function changeBackgroundSchemeChange() {
         case "nfzra":
         case "ra_fzra":
         case "nra_fzra":
-            scheme(rainScheme);
+            scheme.rain;
             break;
         case "bkn":
         case "nbkn":
@@ -213,7 +213,7 @@ function changeBackgroundSchemeChange() {
         case "nwind_bkn":
         case "wind_ovc":
         case "nwind_ovc":
-            scheme(partlyCloudyScheme);
+            scheme.partlyCloudy;
             break;
         case "tsra":
         case "ntsra":
@@ -230,14 +230,14 @@ function changeBackgroundSchemeChange() {
         case "ts_warn":
         case "ts_watch":
         case "ts_nowarn":
-            scheme(thunderStormScheme);
+            scheme.thunderstorm;
             break;
         case "du":
         case "ndu":
         case "fu":
         case "nfu":
         case "hz":
-            scheme(mistScheme);
+            scheme.mist;
             break;
         case "ra_sn":
         case "nra_sn":
@@ -253,10 +253,10 @@ function changeBackgroundSchemeChange() {
         case "nblizzard":
         case "fg":
         case "nfg":
-            scheme(snowScheme);
+            scheme.snow;
             break;
         default:
-            scheme(partlyCloudyScheme);
+            scheme.default;
     }
 
 }
