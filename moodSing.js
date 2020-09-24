@@ -164,9 +164,9 @@ function localForecast(grid) {
 // background/scheme change 
 // ====================================================================
 // switch statement to apply backrground/theme change
-
+let scheme = substring
 if (scheme == null) {
-    return scheme;
+
 }
 
 switch (scheme.substring(44, scheme.length - 4)) {
@@ -256,6 +256,7 @@ switch (scheme.substring(44, scheme.length - 4)) {
     default:
         scheme(partlyCloudyScheme);
 }
+console.log(scheme)
 
 
 // switch(expression) {
