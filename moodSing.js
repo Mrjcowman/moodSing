@@ -1,61 +1,68 @@
-// Closure for the Access Token to keep it from being directly accessed by user
-// function makeAccessToken(accessToken){
-//   let aT = accessToken;
-  
-//   const getAccessToken = ()=>{
-//     return aT;
-//   }
-//   return getAccessToken;
-// }
+let GLOBAL_DEV_MODE = false; // TODO: On Deploy, change this to false
+let GLOBAL_SPOTIFY_ENABLED = true;
 
-// let getAccessToken = ()=>{return null};
+// Closure for the Access Token to keep it from being directly accessed by user
+function makeAccessToken(accessToken){
+  let aT = accessToken;
+  
+  const getAccessToken = ()=>{
+    return aT;
+  }
+  return getAccessToken;
+}
+
+let getAccessToken = ()=>{return null};
 
 // Get the Access Token from Spotify to use for the rest of the Spotify calls
-// const requestSpotifyAccessToken = (appId)=>{
-//   fetch("https://accounts.spotify.com/api/token", {
-//     method: 'POST',
-//     headers: {
-//       "Content-Type": "application/x-www-form-urlencoded",
-//       "Authorization": "Basic "+appId
-//     },
-//     body: "grant_type=client_credentials"
-//   }).then(response=>{
-//     return response.json();
-//   }).then(data=>{
-//     console.log("Access Token Retrieved!");
-//     getAccessToken = makeAccessToken(data.access_token);
-//   })
-// }
+const requestSpotifyAccessToken = (appId)=>{
+  fetch("https://accounts.spotify.com/api/token", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Basic "+appId
+    },
+    body: "grant_type=client_credentials"
+  }).then(response=>{
+    return response.json();
+  }).then(data=>{
+    console.log("Access Token Retrieved!");
+    getAccessToken = makeAccessToken(data.access_token);
+  }).catch(error=>{
+    GLOBAL_DEV_MODE = true;
+    GLOBAL_SPOTIFY_ENABLED = false;
+  })
+}
 
 // Get the authorization from moodSingCure, then send it to Spotify with requestSpotifyAccessToken
-// const getSpotifyAuthorization = (devMode=false) => {
-//   console.log("Getting appId!");
-//   // Fetch the encoded authorization token from moodSingCure, or localhost if devMode is true
-//   fetch(
-//     devMode?"http://localhost:5000/appid":
-//       "https://mood-sing-cure.herokuapp.com/appid",
-//     {mode: ("cors")})
-//     .then(response=>{
-//       return response.json()
-//     }).then(data=>{
-//       if(!data.appId) throw new Error("No Spotify Token found!");
+const getSpotifyAuthorization = (devMode=false) => {
+  console.log("Getting appId!");
+  // Fetch the encoded authorization token from moodSingCure, or localhost if devMode is true
+  fetch(
+    devMode?"http://localhost:5000/appid":
+      "https://mood-sing-cure.herokuapp.com/appid",
+    {mode: ("cors")})
+    .then(response=>{
+      return response.json()
+    }).then(data=>{
+      if(!data.appId) throw new Error("No Spotify Token found!");
 
-//       console.log(data);
+      console.log(data);
 
-//       if(data.appId!="null"){
-//         console.log("appId successfully retrieved!");
+      if(data.appId!="null"){
+        console.log("appId successfully retrieved!");
 
-//         requestSpotifyAccessToken(data.appId);
+        requestSpotifyAccessToken(data.appId);
 
-//       }else{
-//         throw new Error("Could not access Spotify Token! Null Token found");
-//       }
-//     }).catch(error=>{
-      
-//     })
-// }
+      }else{
+        throw new Error("Could not access Spotify Token! Null Token found");
+      }
+    }).catch(error=>{
+      GLOBAL_DEV_MODE = true;
+      GLOBAL_SPOTIFY_ENABLED = false;
+    })
+}
 
-// getSpotifyAuthorization(true);  // TODO: On Deploy, change this to false
+getSpotifyAuthorization(GLOBAL_DEV_MODE);  
 
 
 
