@@ -2,14 +2,39 @@
 nav{
     background: #022340;
 }
+body {
+    background:#B0B7BF;
+}
+.box {
+    background-color: #022340;
+    background: #64798C;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    height: 350px;
+    width: 700px;
+}
+#accept-weather-btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+   
+        
+      
+          
+}
+
 .container{
     margin-left: 5vw ;
     border: black;
     /* height: 300px; */
-    margin: 20px;
-    padding: 20px 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
     display: flex; 
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: space-around;
 }
  
@@ -157,3 +182,4 @@ prompt.snow {
     }
     /* .background-theme_snow-5-hex { background: #0D0D0D; } */
 
+/*  */
