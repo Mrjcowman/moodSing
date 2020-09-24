@@ -24,10 +24,9 @@
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo"><img src="images/favicon.png" id="logo">moodSing</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+        <li><a href="https://accounts.spotify.com/en/status"><img src="images/spotify-icon-png-15380 (1).png" id= "spotify-icon">
+        <li><a><i class="material-icons">mood</i></a></li>
+      
       </ul>
     </div>
   </nav>
@@ -55,12 +54,12 @@
         <div class="card-content">
           <h3>Woohoo! Next step is your mood. What mood are you in today?</h3>
         </div>
-        <div class="row">
+        <form class="row" id="mood-form">
           <div class="input-field col s6 offset-s3">
             <input value="" id="mood-input" type="text" class="mood-autocomplete validate">
             <label for="mood-input" class="active">Mood</label>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -91,7 +90,7 @@
       
 
 
-  playlist -->
+  <!-- playlist -->
   <div class="container">
     <div class= "row">
       <div class = "col-md-12">
@@ -125,6 +124,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./genreAutoComplete.js"></script>
   <script src="./moodAutoComplete.js"></script>
+  <script src="./mood.js"></script>
   <script src="moodSing.js"></script>
 </body>
 </html>

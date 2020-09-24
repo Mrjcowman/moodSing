@@ -90,8 +90,7 @@ function browserSupportsGeolocation() {
     console.log(47.655548, -122.303200);
   }
 }
-$("#accept-weather-btn").on("click", function (event) {
-  event.preventDefault();
+function weatherForecast() {
   progressBar($("#weather-approval"))
   let positionStart,
     geoSuccess = function (position) {
@@ -128,7 +127,7 @@ $("#accept-weather-btn").on("click", function (event) {
       enableHighAccuracy: true
     };
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-})
+}
 
 
 
@@ -179,6 +178,7 @@ function localForecast(grid) {
 function startHide () {
   $("#weather-approval").hide()
   $("#mood-prompt").hide()
+  $("#playList").hide()
 }
 
 function progressBar(elementID) {
@@ -197,8 +197,20 @@ function genSpot() {
   });
 }
 
-// event.listener to pull input from user
+// event.listeners to pull input from user
 // ====================================================================
+$("#accept-weather-btn").on("click", function (event) {
+  event.preventDefault();
+  weatherForecast();
+})
+
+$("#mood-form").on("submit", function (event) {
+  event.preventDefault();
+  let userMood = $("#mood-input").val()
+  $("#mood-prompt").toggle()
+  console.log(userMood);
+  moodMatcher(userMood)
+})
 
 
 // mood
