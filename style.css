@@ -15,17 +15,22 @@ body {
     transform: translate(-50%, -50%);
     height: 350px;
     width: 700px;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid #F2DC6D;
+    padding: 20px;
+   
+    
+   
 }
+
+
 #accept-weather-btn {
     position: fixed;
     top: 50%;
     left: 50%;
     /* bring your own prefixes */
-    transform: translate(-50%, -50%);
-   
-        
-      
-          
+    transform: translate(-50%, -50%);         
 }
 
 .container{
