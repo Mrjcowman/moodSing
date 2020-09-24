@@ -192,7 +192,29 @@ function moodMatcher(userMood) {
 
 
 
-// spotify api 
+// spotify api stuff
 // ====================================================================
-// take in request from user on search
-// returns widget data from spotify search
+
+// Returns the track id of a song that matches the passed genre and keyword
+const getSong = (genre, keyword) => {
+
+}
+
+// Generates seed songs for the recommendations based on chosen genre, weather, and mood
+const getSeedMusic = (genre, weather, mood) => {
+  // Get a song related to the weather in the genre
+  let weatherSong = getSong(genre, weather);
+
+  // Get a song related to the mood in the genre
+  let moodSong = getSong(genre, mood);
+  
+  // Return both these songs
+  return [weatherSong, moodSong];
+}
+
+// Gets the list of recommended songs based on the passed-in seed music and mood params
+const getMoodSingRecommendations = (seedMusic, weatherParams) => {
+  let trackIDs = [];
+
+  return trackIDs;
+}
