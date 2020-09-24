@@ -1,6 +1,6 @@
 
-let GLOBAL_DEV_MODE = false; // TODO: On Deploy, change this to false
-let GLOBAL_SPOTIFY_ENABLED = true;
+let GLOBAL_DEV_MODE = true; // TODO: On Deploy, change this to false
+let GLOBAL_SPOTIFY_ENABLED = false;
 
 let userForecast,
     userMood,
@@ -194,14 +194,71 @@ function progressBar(elementID) {
   elementID.append(progress);
 }
 
-const testArr = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"]
-
-function genSpot() {
+function genSpot(trackArray) {
   $("#playList").toggle()
-  testArr.forEach(track => {
+  trackArray.forEach(track => {
     let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
     $("#playList").append(spotify)
   });
+}
+
+
+
+// mood
+// ====================================================================
+// take user input to match with a preset mood
+// pull spotify perameters for preset mood from mood.js
+
+function moodMatcher(userMood) {
+  const moodMatch = mood.find(moodObject => moodObject.moodType = userMood.toLowerCase());
+  console.log(moodMatch);
+  let valence = moodMatch.valence,
+  energy = moodMatch.energy,
+  tempo = moodMatch.tempo,
+  loudness = moodMatch.loudness,
+  danceability = moodMatch.danceability;
+  console.log(valence, energy, tempo, loudness, danceability);
+  userMoodParams = [valence, energy, tempo, loudness, danceability]
+}
+
+// mood.js
+// ====================================================================
+// object relating moods to spotify perameters
+
+
+
+
+
+
+
+// spotify api stuff
+// ====================================================================
+
+// Returns the track id of a song that matches the passed genre and keyword
+const getSong = (genre, keyword) => {
+  
+}
+
+// Generates seed songs for the recommendations based on chosen genre, weather, and mood
+const getSeedMusic = (genre, weather, mood) => {
+  // Get a song related to the weather in the genre
+  let weatherSong = getSong(genre, weather);
+  
+  // Get a song related to the mood in the genre
+  let moodSong = getSong(genre, mood);
+  
+  // Return both these songs
+  return [weatherSong, moodSong];
+}
+
+// Gets the list of recommended songs based on the passed-in seed music and mood params
+const getMoodSingRecommendations = (seedMusic, weatherParams) => {
+  let trackIDs = [];
+  if(!GLOBAL_SPOTIFY_ENABLED) return ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"];
+
+
+
+  return trackIDs;
 }
 
 // event.listeners to pull input from user
@@ -224,60 +281,5 @@ $("#genre-form").on("submit", function (event) {
   userGenre = $("#genre-input").val()
   $("#genre-prompt").toggle()
   console.log(userGenre);
-  genSpot();
+  genSpot(getMoodSingRecommendations(getSeedMusic(userGenre, userForecast, userMood), moodMatcher(userMood)));
 })
-
-
-// mood
-// ====================================================================
-// take user input to match with a preset mood
-// pull spotify perameters for preset mood from mood.js
-
-function moodMatcher(userMood) {
-  const moodMatch = mood.find(moodObject => moodObject.moodType = userMood.toLowerCase());
-  console.log(moodMatch);
-  let valence = moodMatch.valence,
-    energy = moodMatch.energy,
-    tempo = moodMatch.tempo,
-    loudness = moodMatch.loudness,
-    danceability = moodMatch.danceability;
-  console.log(valence, energy, tempo, loudness, danceability);
-  userMoodParams = [valence, energy, tempo, loudness, danceability]
-}
-
-// mood.js
-// ====================================================================
-// object relating moods to spotify perameters
-
-
-
-
-
-
-
-// spotify api stuff
-// ====================================================================
-
-// Returns the track id of a song that matches the passed genre and keyword
-const getSong = (genre, keyword) => {
-
-}
-
-// Generates seed songs for the recommendations based on chosen genre, weather, and mood
-const getSeedMusic = (genre, weather, mood) => {
-  // Get a song related to the weather in the genre
-  let weatherSong = getSong(genre, weather);
-
-  // Get a song related to the mood in the genre
-  let moodSong = getSong(genre, mood);
-  
-  // Return both these songs
-  return [weatherSong, moodSong];
-}
-
-// Gets the list of recommended songs based on the passed-in seed music and mood params
-const getMoodSingRecommendations = (seedMusic, weatherParams) => {
-  let trackIDs = [];
-
-  return trackIDs;
-}
