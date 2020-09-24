@@ -5,6 +5,12 @@ nav{
 body {
     background:#B0B7BF;
 }
+.page-footer{
+    background: #022340;
+    display: flex;
+    min-height: 10vh;
+    flex-direction: column;
+}
 .box {
     background-color: #022340;
     background: #64798C;
@@ -15,17 +21,22 @@ body {
     transform: translate(-50%, -50%);
     height: 350px;
     width: 700px;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid #F2DC6D;
+    padding: 20px;
+   
+    
+   
 }
+
+
 #accept-weather-btn {
     position: fixed;
     top: 50%;
     left: 50%;
     /* bring your own prefixes */
-    transform: translate(-50%, -50%);
-   
-        
-      
-          
+    transform: translate(-50%, -50%);         
 }
 
 .container{
@@ -36,20 +47,26 @@ body {
     display: flex; 
     /* flex-direction: row; */
     justify-content: space-around;
+
 }
  
     
 #playList {
     text-align: center;
-    border: 3px solid black; 
-    background: beige;
+    /* border: 3px solid black;  */
+    background:  #F2DC6D;
     border-radius: 25px ;
-    padding: 15px 15px; 
+    padding: 5px 5px; 
     height: 600px;
     /* width: 300px;  */
     margin-left: 30px;
 
 
+
+}
+#logo{
+    width:40px; 
+    height: 40px;
 }
 
 body {
