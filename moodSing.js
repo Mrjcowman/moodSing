@@ -1,13 +1,67 @@
+// Closure for the Access Token to keep it from being directly accessed by user
+function makeAccessToken(accessToken){
+  let aT = accessToken;
+  
+  const getAccessToken = ()=>{
+    return aT;
+  }
+  return getAccessToken;
+}
+
+let getAccessToken = ()=>{return null};
+
 // get request for [encrypted] spotify api secret
 // ====================================================================
 // tag for call to spotify playlist request
+const getSpotifyToken = (devMode=false) => {
+  console.log("Getting appId!");
+  // Fetch the encoded token from moodSingCure, or localhost if devMode is true
+  fetch(
+    devMode?"https://localhost:5000":
+      "https://mood-sing-cure.herokuapp.com/appid",
+    {mode:"cors"})
+    .then(response=>{
+      response.json()
+    }).then(data=>{
+      if(!data.appId) throw new Error("No Spotify Token found!");
+
+      if(data.appId!="null"){
+        console.log("appId successfully retrieved!");
+
+        fetch("https://accounts.spotify.com/api/token", {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "Basic "+data.appId
+          },
+          body: "grant_type=client_credentials"
+        }).then(response=>{
+          response.json();
+        }).then(data=>{
+          console.log("Access Token Retrieved: "+response.access_token);
+          getAccessToken = makeAccessToken(response.access_token);
+        })
+
+      }else{
+        throw new Error("Could not access Spotify Token! Null Token found");
+      }
+    }).catch(error=>{
+      
+    })
+}
+
+getSpotifyToken();
+
+
+
+
 
 // location api
 // ====================================================================
 // current location variable = long/lat (from navigator)
-function browserSupportsGeolocation {
+function browserSupportsGeolocation() {
     if (navigator.geolocation) {
-        showPrompt = function(){$("#location-prompt").attr("style","block")}, 
+        showPrompt = function(){$("#location-prompt").attr("style","block")}; 
     } else {
         // Latitude and longitude of UW Campus
         console.log("Does not support geo");
