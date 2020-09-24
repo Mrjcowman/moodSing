@@ -128,7 +128,6 @@ $("#accept-weather-btn").on("click", function (event) {
 // get request with location variable for current weather
 // will need lat/long from weather api
 // test location gridLocater(37.6752, -120.9465)
-gridLocater(37.6752, -120.9465)
 function gridLocater(lat, lon) {
   $.get(`https://api.weather.gov/points/${lat},${lon}`, function (grid) {
     localForecast(grid);
@@ -137,6 +136,7 @@ function gridLocater(lat, lon) {
 function localForecast(grid) {
   $.get(`https://api.weather.gov/gridpoints/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`, function (forecast) {
     console.log(forecast.properties.periods[0].shortForecast);
+    $("#mood-prompt").toggle()
     return forecast.properties.periods[0].shortForecast
   });
 }
@@ -187,8 +187,6 @@ function genSpot() {
     $("#playList").append(spotify)
   });
 }
-
-genSpot()
 
 // event.listener to pull input from user
 // ====================================================================
