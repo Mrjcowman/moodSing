@@ -1,7 +1,7 @@
 // Closure for the Access Token to keep it from being directly accessed by user
 // function makeAccessToken(accessToken){
 //   let aT = accessToken;
-  
+
 //   const getAccessToken = ()=>{
 //     return aT;
 //   }
@@ -51,7 +51,7 @@
 //         throw new Error("Could not access Spotify Token! Null Token found");
 //       }
 //     }).catch(error=>{
-      
+
 //     })
 // }
 
@@ -64,39 +64,57 @@
 // location api
 // ====================================================================
 // current location variable = long/lat (from navigator)
-function browserSupportsGeolocation() {
-    if (navigator.geolocation) {
-        showPrompt = function(){$("#location-prompt").attr("style","block")}; 
-    } else {
-        // Latitude and longitude of UW Campus
-        console.log("Does not support geo");
-        console.log(47.655548,-122.303200);
-    }
 
+browserSupportsGeolocation()
+
+
+
+function browserSupportsGeolocation() {
+  if (navigator.geolocation) {
+    locationPrompt()
+  } else {
+    // Latitude and longitude of UW Campus
+    hideLocationPrompt()
+    console.log("Does not support geo");
+    console.log(47.655548, -122.303200);
+  }
 }
-$("#buttonLocate").on("click", function (event) {
-    event.preventDefault();
-    let positionStart,
-        showPrompt = function(){$("#location-prompt").attr("style","block")},
-        hidePrompt = function(){$("#location-prompt").attr("style","none")},
-        promptTimeOut = setTimeout(showPrompt, 6000),
-        geoSuccess = function(position){
-          hidePrompt
-          clearTimeout(promptTimeOut);
-          positionStart = position;
-          let lat = positionStart.coords.latitude;
-          let lon = positionStart.coords.longitude;
-          console.log(lat,lon);
-        },
-        geoError = function(error){
-          switch (error.code) {
-            case error.TIMEOUT:
-              showPrompt
-              break;
-          }
-        };
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-  })
+$("#accept-weather-btn").on("click", function (event) {
+  event.preventDefault();
+  progressBar($("#weather-approval"))
+  let positionStart,
+    geoSuccess = function (position) {
+      hideLocationPrompt()
+      positionStart = position;
+      let lat = positionStart.coords.latitude,
+          lon = positionStart.coords.longitude;
+      console.log(lat, lon);
+    },
+    geoError = function (error) {
+      hideLocationPrompt()
+      switch (error.code) {
+        case error.TIMEOUT:
+          console.log("Timed Out Reload");
+          locationPrompt();
+          break;
+        case error.PERMISSION_DENIED:
+          console.log("USER SAID NO");
+          console.log(47.655548, 122.303200);
+          M.toast({ html: "Sorry you don't want to share your location. We will set it to UW Campus!" })
+          break;
+        case error.POSITION_UNAVAILABLE:
+          console.log("Unable to grab users location");
+          console.log(47.655548, 122.303200);
+          M.toast({ html: "We can't find your location so we are setting your location to UW Campus!" })
+      }
+    },
+    geoOptions = {
+      maximumAge: 0,
+      timeout: 50000,
+      enableHighAccuracy: true
+    };
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+})
 
 
 
@@ -143,16 +161,29 @@ function localForecast(grid) {
 //        -genre
 //        -mood
 // render playlists
-const testArr = ["6Z34YgqCJkdrliDmbcaJgy","6kyiWsforDWCq1VBCm4BNZ","2Cu5ExXidcoE4vF5hIYict","2VBYFWgwIlJjyzidPTHQqp","6cd1yCz5aapoeauiLH9dcU","4c2W3VKsOFoIg2SFaO6DY5","1nmeX39rjGxyaoSkPxSHwr","38iCfXPXqyeEHsNtlxjtSG","50PU05RTGva8laKDwxED9Y","63w0QA1wiV7QhF9jeiHETF"]
+function progressBar(elementID) {
+  let indeterminate = $("<div>").addClass("indeterminate"),
+    progress = $("<div>").addClass("progress");
+  progress.append(indeterminate);
+  elementID.append(progress);
+}
+function locationPrompt() {
+  $("#weather-approval").attr("style", "display: block")
+}
+function hideLocationPrompt() {
+  $("#weather-approval").attr("style", "display: none")
+}
 
-function genSpot(){
+const testArr = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"]
+
+function genSpot() {
   testArr.forEach(track => {
-    let spotify = $("<div>").addClass("col m6 s12").html (`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
+    let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
     $("#playList").append(spotify)
-  });  
-  }
+  });
+}
 
-  genSpot()
+genSpot()
 
 // event.listener to pull input from user
 // ====================================================================
@@ -167,12 +198,12 @@ function moodMatcher(userMood) {
   const moodMatch = mood.find(moodObject => moodObject.moodType = userMood.toLowerCase());
   console.log(moodMatch);
   let valence = moodMatch.valence,
-      energy =  moodMatch.energy,
-      tempo = moodMatch.tempo,
-      loudness = moodMatch.loudness,
-      danceability = moodMatch.danceability;
-  console.log(valence, energy, tempo, loudness,danceability);
-  return (valence, energy, tempo, loudness,danceability)
+    energy = moodMatch.energy,
+    tempo = moodMatch.tempo,
+    loudness = moodMatch.loudness,
+    danceability = moodMatch.danceability;
+  console.log(valence, energy, tempo, loudness, danceability);
+  return (valence, energy, tempo, loudness, danceability)
 }
 
 // mood.js
