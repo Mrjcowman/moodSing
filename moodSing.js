@@ -57,24 +57,26 @@
 
 // getSpotifyAuthorization(true);  // TODO: On Deploy, change this to false
 
+// Function to initialize page
+function init(){
+  startHide()
+  browserSupportsGeolocation()
+}
 
-
+// Calling the init() function to load page
+init()
 
 
 // location api
 // ====================================================================
 // current location variable = long/lat (from navigator)
 
-browserSupportsGeolocation()
-
-
-
 function browserSupportsGeolocation() {
   if (navigator.geolocation) {
-    locationPrompt()
+    $("#weather-approval").toggle();
   } else {
     // Latitude and longitude of UW Campus
-    hideLocationPrompt()
+    hidePrompt($("#weather-approval"));
     console.log("Does not support geo");
     console.log(47.655548, -122.303200);
   }
@@ -84,14 +86,15 @@ $("#accept-weather-btn").on("click", function (event) {
   progressBar($("#weather-approval"))
   let positionStart,
     geoSuccess = function (position) {
-      hideLocationPrompt()
+      $("#weather-approval").toggle();
       positionStart = position;
       let lat = positionStart.coords.latitude,
           lon = positionStart.coords.longitude;
       console.log(lat, lon);
+      gridLocater(lat,lon);
     },
     geoError = function (error) {
-      hideLocationPrompt()
+      $("#weather-approval").toggle();
       switch (error.code) {
         case error.TIMEOUT:
           console.log("Timed Out Reload");
@@ -99,12 +102,14 @@ $("#accept-weather-btn").on("click", function (event) {
           break;
         case error.PERMISSION_DENIED:
           console.log("USER SAID NO");
-          console.log(47.655548, 122.303200);
+          console.log(47.655548, -122.303200);
+          gridLocater(47.655548, -122.303200);
           M.toast({ html: "Sorry you don't want to share your location. We will set it to UW Campus!" })
           break;
         case error.POSITION_UNAVAILABLE:
           console.log("Unable to grab users location");
-          console.log(47.655548, 122.303200);
+          console.log(47.655548, -122.303200);
+          gridLocater(47.655548, -122.303200);
           M.toast({ html: "We can't find your location so we are setting your location to UW Campus!" })
       }
     },
@@ -123,6 +128,7 @@ $("#accept-weather-btn").on("click", function (event) {
 // get request with location variable for current weather
 // will need lat/long from weather api
 // test location gridLocater(37.6752, -120.9465)
+gridLocater(37.6752, -120.9465)
 function gridLocater(lat, lon) {
   $.get(`https://api.weather.gov/points/${lat},${lon}`, function (grid) {
     localForecast(grid);
@@ -161,17 +167,16 @@ function localForecast(grid) {
 //        -genre
 //        -mood
 // render playlists
+function startHide () {
+  $("#weather-approval").hide()
+  $("#mood-prompt").hide()
+}
+
 function progressBar(elementID) {
   let indeterminate = $("<div>").addClass("indeterminate"),
     progress = $("<div>").addClass("progress");
   progress.append(indeterminate);
   elementID.append(progress);
-}
-function locationPrompt() {
-  $("#weather-approval").attr("style", "display: block")
-}
-function hideLocationPrompt() {
-  $("#weather-approval").attr("style", "display: none")
 }
 
 const testArr = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"]
