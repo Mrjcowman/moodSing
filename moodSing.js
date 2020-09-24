@@ -10,37 +10,42 @@ function makeAccessToken(accessToken){
 
 let getAccessToken = ()=>{return null};
 
-// get request for [encrypted] spotify api secret
-// ====================================================================
-// tag for call to spotify playlist request
-const getSpotifyToken = (devMode=false) => {
+// Get the Access Token from Spotify to use for the rest of the Spotify calls
+const requestSpotifyAccessToken = (appId)=>{
+  fetch("https://accounts.spotify.com/api/token", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Basic "+appId
+    },
+    body: "grant_type=client_credentials"
+  }).then(response=>{
+    return response.json();
+  }).then(data=>{
+    console.log("Access Token Retrieved!");
+    getAccessToken = makeAccessToken(data.access_token);
+  })
+}
+
+// Get the authorization from moodSingCure, then send it to Spotify with requestSpotifyAccessToken
+const getSpotifyAuthorization = (devMode=false) => {
   console.log("Getting appId!");
-  // Fetch the encoded token from moodSingCure, or localhost if devMode is true
+  // Fetch the encoded authorization token from moodSingCure, or localhost if devMode is true
   fetch(
-    devMode?"https://localhost:5000":
+    devMode?"http://localhost:5000/appid":
       "https://mood-sing-cure.herokuapp.com/appid",
-    {mode:"cors"})
+    {mode: ("cors")})
     .then(response=>{
-      response.json()
+      return response.json()
     }).then(data=>{
       if(!data.appId) throw new Error("No Spotify Token found!");
+
+      console.log(data);
 
       if(data.appId!="null"){
         console.log("appId successfully retrieved!");
 
-        fetch("https://accounts.spotify.com/api/token", {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "Basic "+data.appId
-          },
-          body: "grant_type=client_credentials"
-        }).then(response=>{
-          response.json();
-        }).then(data=>{
-          console.log("Access Token Retrieved: "+response.access_token);
-          getAccessToken = makeAccessToken(response.access_token);
-        })
+        requestSpotifyAccessToken(data.appId);
 
       }else{
         throw new Error("Could not access Spotify Token! Null Token found");
@@ -50,7 +55,7 @@ const getSpotifyToken = (devMode=false) => {
     })
 }
 
-getSpotifyToken();
+getSpotifyAuthorization(true);  // TODO: On Deploy, change this to false
 
 
 
