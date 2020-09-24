@@ -47,21 +47,32 @@
 
 
 </section>
-
-      
+<!-- Auto complete input fields -->
+<div class="row">
+<div class="col s3 offset-s1">
+  <div class="row">
+    <div class="input-field col s12">
+      <input type="text" id="genre-input" class="genre-autocomplete">
+      <label for="genre-input">What genre of music do you like?</label>
+    </div>
+  </div>
+</div>
+<div class="col s3">
+  <div class="input-field col s12">
+    <input type="text" id="mood-input" class="mood-autocomplete">
+    <label for="mood-input">What is your desired mood?</label>
+  </div>
+</div>
+</div>
+    
 
 
   <!-- playlist -->
   <!-- <div class="container"> -->
-    <div class= "row">
-      <div class = "col-md-12">
-    <ul id="playList"><h1>playlist</h1>
-      <li><button><a href=" " ></a>song1</button></li> 
-      <li><button><a href=" " ></a>song2</button></li> 
-      <li><button><a href=" " ></a>song3</button></li> 
-      <li><button><a href=" " ></a>song4</button></li> 
-      <li><button><a href=" " ></a>song4</button></li> 
-    </ul>
+    <div class= "row" id="playList">
+      <div class = "col s12">
+        <h1>playlist</h1>
+      </div>
     </div>
   </div>
 <!-- </div> -->
@@ -70,6 +81,8 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./genreAutoComplete.js"></script>
+  <script src="./moodAutoComplete.js"></script>
   <script src="moodSing.js"></script>
 </body>
 </html>
