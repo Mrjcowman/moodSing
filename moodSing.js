@@ -141,6 +141,10 @@ function localForecast(grid) {
 //        -genre
 //        -mood
 // render playlists
+function genSpot(){
+  let spotify = $("<div>").html (`<iframe src="https://open.spotify.com/embed/track/6cd1yCz5aapoeauiLH9dcU" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
+  $("#spotify").append(spotify)
+  }
 
 
 // event.listener to pull input from user
