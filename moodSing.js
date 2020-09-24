@@ -1,5 +1,10 @@
+
 let GLOBAL_DEV_MODE = false; // TODO: On Deploy, change this to false
 let GLOBAL_SPOTIFY_ENABLED = true;
+
+let userForecast,
+    userMood,
+    userGenre;
 
 // Closure for the Access Token to keep it from being directly accessed by user
 function makeAccessToken(accessToken){
@@ -145,7 +150,7 @@ function localForecast(grid) {
   $.get(`https://api.weather.gov/gridpoints/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`, function (forecast) {
     console.log(forecast.properties.periods[0].shortForecast);
     $("#mood-prompt").toggle()
-    return forecast.properties.periods[0].shortForecast
+    userForecast = forecast.properties.periods[0].shortForecast
   });
 }
 
@@ -178,6 +183,7 @@ function localForecast(grid) {
 function startHide () {
   $("#weather-approval").hide()
   $("#mood-prompt").hide()
+  $("#genre-prompt").hide()
   $("#playList").hide()
 }
 
@@ -191,6 +197,7 @@ function progressBar(elementID) {
 const testArr = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"]
 
 function genSpot() {
+  $("#playList").toggle()
   testArr.forEach(track => {
     let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
     $("#playList").append(spotify)
@@ -206,10 +213,18 @@ $("#accept-weather-btn").on("click", function (event) {
 
 $("#mood-form").on("submit", function (event) {
   event.preventDefault();
-  let userMood = $("#mood-input").val()
+  userMood = $("#mood-input").val()
   $("#mood-prompt").toggle()
   console.log(userMood);
-  moodMatcher(userMood)
+  $("#genre-prompt").toggle()
+})
+
+$("#genre-form").on("submit", function (event) {
+  event.preventDefault();
+  userGenre = $("#genre-input").val()
+  $("#genre-prompt").toggle()
+  console.log(userGenre);
+  genSpot();
 })
 
 
@@ -227,7 +242,7 @@ function moodMatcher(userMood) {
     loudness = moodMatch.loudness,
     danceability = moodMatch.danceability;
   console.log(valence, energy, tempo, loudness, danceability);
-  return (valence, energy, tempo, loudness, danceability)
+  userMoodParams = [valence, energy, tempo, loudness, danceability]
 }
 
 // mood.js
