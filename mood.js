@@ -35,7 +35,7 @@ D
                                 danceable and 1.0 is most danceable.
 */
 
-cconst mood = [
+const mood = [
     {
         moodType: "adventurous",
         valence: 0.75,
