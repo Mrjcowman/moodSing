@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>moodSing</title>
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="images/logoNOwords.jpeg">
-    <!-- materialize icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- font  -->
-    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-    <!-- materializecss -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    
-    <!-- moodSing stylesheet -->
-    <link href="style.css" rel="stylesheet"/>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>moodSing</title>
+  <!-- favicon -->
+  <link rel="shortcut icon" type="image/png" href="images/logoNOwords.jpeg">
+  <!-- materialize icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- font  -->
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+  <!-- materializecss -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- moodSing stylesheet -->
+  <link href="style.css" rel="stylesheet" />
 </head>
+
 <body>
 
   <!-- <div class="logo"><a href="#"><img src="images/favicon.png"></a></div>   -->
@@ -24,104 +26,100 @@
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo"><img src="images/favicon.png" id="logo">moodSing</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="https://accounts.spotify.com/en/status"><img src="images/spotify-icon-png-15380 (1).png" id= "spotify-icon">
+        <li><a href="https://accounts.spotify.com/en/status"><img src="images/spotify-icon-png-15380 (1).png"
+              id="spotify-icon">
         <li><a><i class="material-icons">mood</i></a></li>
-      
+
       </ul>
     </div>
   </nav>
 
-
-<!-- weather approval -->
-  <div class="row" id="weather-approval">
-    <div class="col s12 m6">
-      <div class="box">
-        <div class="card-content">
-          <h3>Welcome to moodSing!</h3>
-          <p>In order to use moodSing, we will need your location! Please accept so you can use this amazing app!</p>
-        </div>
-        <div class="card-action" id="">
-          <a class="waves-effect waves-effect btn #4db6ac teal lighten-2" id="accept-weather-btn">Accept</a>        
-        </div>
-      </div>
-    </div>
-
-
-
-
-<!-- mood prompt with drop box -->
-  <div class="row" id="mood-prompt">
-    <div class="col s12 m6">
-
-      <div class="box">
-        <div class="card-content">
-          <h3>Woohoo! Next step is your mood. What mood are you in today?</h3>
-        </div>
-        <form class="row" id="mood-form">
-          <div class="input-field col s6 offset-s3">
-            <input value="" id="mood-input" type="text" class="mood-autocomplete validate">
-            <label for="mood-input" class="active">Mood</label>
+  <main>
+    <!-- weather approval -->
+    <div class="row" id="weather-approval">
+      <div class="col s12 m6">
+        <div class="box">
+          <div class="card-content">
+            <h3>Welcome to moodSing!</h3>
+            <p>In order to use moodSing, we will need your location! Please accept so you can use this amazing app!</p>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-   <!-- prompt for genre choices  -->
-  <div class="row" id="genre-prompt">
-    <div class="col s12 m6">
-      <div class="box">
-        <div class="card-content">
-       
-          <h3>Lastly, What genre of music are you in the mood for?</h3>
-        </div>
-        <form class="row" id="genre-form">
-          <div class="input-field col s6 offset-s3">
-            <input value="" id="genre-input" type="text" class="genre-autocomplete validate">
-            <label for="genre-input" class="active">Genre</label>
+          <div class="card-action" id="">
+            <a class="waves-effect waves-effect btn #4db6ac teal lighten-2" id="accept-weather-btn">Accept</a>
           </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
 
- <!-- weather -->
-<div class="container" id="userForecast">
-  <div class= "row">
-    <div class = "col-md-12"></div>
-    <h1>Today's weather</h1>
-  </div>
-</div>
-
-  <!-- playlist -->
-  <div class="container">
-    <div class= "row">
-      <div class = "col-md-12">
-    <ul id="playList"><h1>playlist</h1>
-     
-    </ul>
-
+    <!-- mood prompt with drop box -->
+    <div class="row" id="mood-prompt">
+      <div class="col s12 m6">
+        <div class="box">
+          <div class="card-content">
+            <h3>Woohoo! Next step is your mood. What mood are you in today?</h3>
+          </div>
+          <form class="row" id="mood-form">
+            <div class="input-field col s6 offset-s3">
+              <input value="" id="mood-input" type="text" class="mood-autocomplete validate">
+              <label for="mood-input" class="active">Mood</label>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</div> 
 
-<!-- footer -->
-
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="white-text"><img src="images/favicon.png" id="logo">moodSing</h3>
+    <!-- prompt for genre choices  -->
+    <div class="row" id="genre-prompt">
+      <div class="col s12 m6">
+        <div class="box">
+          <div class="card-content">
+            <h3>Lastly, What genre of music are you in the mood for?</h3>
+          </div>
+          <form class="row" id="genre-form">
+            <div class="input-field col s6 offset-s3">
+              <input value="" id="genre-input" type="text" class="genre-autocomplete validate">
+              <label for="genre-input" class="active">Genre</label>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="col l6 s6">
-        <a class="grey-text text-lighten-4 right" href="https://github.com/Mrjcowman/moodSing"><h3>github</h3></a>
-        <p class="grey-text text-lighten-4">© 2020 moodSing Copyright</p>
+    </div>
+
+    <!-- weather -->
+    <div class="container" id="userForecast">
+      <div class="row">
+        <div class="col-md-12"></div>
+        <h1>Today's weather</h1>
       </div>
-  </div>
-</div>
-</footer>
+    </div>
 
+    <!-- playlist -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul id="playList">
+            <h1>playlist</h1>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
 
+  <!-- footer -->
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="white-text"><img src="images/favicon.png" id="logo">moodSing</h3>
+        </div>
+        <div class="col l6 s6">
+          <a class="grey-text text-lighten-4 right" href="https://github.com/Mrjcowman/moodSing">
+            <h3>github</h3>
+          </a>
+          <p class="grey-text text-lighten-4">© 2020 moodSing Copyright</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -130,6 +128,5 @@
   <script src="moodSing.js"></script>
 
 </body>
+
 </html>
-
-
