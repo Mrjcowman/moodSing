@@ -16,10 +16,8 @@ main {
 
 footer {
     background: #022340;
-    display: flex;
-    min-height: 10vh;
-    /* This acts oddly on some screens, should probably make it adjust to content instead, or pixel min height */
-    flex-direction: column;
+    height: 50px;
+   
 }
 
 
@@ -27,8 +25,6 @@ footer {
 #logo {
     width: 60px;
     height: 60px;
-    width: 40px;
-    height: 40px;
     position: relative;
     top: 10px;
 }
@@ -66,7 +62,7 @@ footer {
 
 }
 
-#weather {
+#userForecast {
     text-align: center;
     background: #F2DC6D;
     border-radius: 25px;
