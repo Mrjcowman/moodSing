@@ -1,9 +1,7 @@
 # moodSing 
-moodSing is a weather app that uses the user's current location to determine weather conditions then play music to fit the current weather. The user can also input their current mood and the site will play music according to their mood. These features bypass the need for users to explain their mood as well as introducing new genres of music to users. 
+**moodSing** is a music recommendation app that suggests music suited to the weather around the user as well as their current mood and preferred genre. These features bypass the need for users to wander and search for music that fits their mood and helps introduce the users to new music. 
 
-------------------
-## Roles
-
+## Contributors
 ```
 Front End 
     - Katie Dickson 
@@ -15,104 +13,42 @@ Back End
     - Andrew Crow - Project Manager
     - Robert Dalton
 ```
-------------------
-## Typography 
 
-font-family: 'Poiret One', cursive;
+## Credits
+Thank you to the developers of the following APIs for making moodSing possible!
 
-<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+[Spotify Web API](https://developer.spotify.com/documentation/web-api/)
 
--------------------
-## Visuals
+[NOAA Web API Service](https://www.weather.gov/documentation/services-web-api)
 
-Initial Desktop Wireframe
-![ Initial Desktop Wireframe ](./images/desktop1.png)
+[Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 
-After User Input Desktop Wireframe
-![ After User Input Desktop Wireframe ](./images/desktop2.png)
-
-Initial Mobile Wireframe
-![ Initial Mobile Wireframe ](./images/phone1.png)
-
-After User Input Mobile Wireframe
-![ After User Input Mobile Wireframe ](./images/phone2.png)
-
-Weather to Mood Index
-![ Weather to Mood Index ](./images/weather-mood-to-spotify-param-v2.png)
-
---------------------
-## API's
-
-Weather:
-api.weather.gov
-
-Music Content/Playlist and info:
-Spotify Wev API
-
-Location info (lat/long):
-https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+## Status
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/mrjcowman/moodSing?include_prereleases&style=for-the-badge)
+![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/mrjcowman/moodSing?style=for-the-badge)
+![GitHub commits since latest release (by date) for a branch](https://img.shields.io/github/commits-since/mrjcowman/moodSing/latest/dev?style=for-the-badge)
 
 ## Color Scheme
+### *Main color scheme:*
+![](https://via.placeholder.com/100/B0B7BF/000/?text=%23B0B7BF)![](https://via.placeholder.com/100/022340/fff/?text=%23022340)![](https://via.placeholder.com/100/64798C/fff/?text=%2364798C)![](https://via.placeholder.com/100/A6A160/fff/?text=%23A6A160)![](https://via.placeholder.com/100/F2DC6D/000/?text=%23F2DC6D)
 
-Main color scheme:
-.maincolortheme_moodsinglogo-1-hex { color: #B0B7BF; }
-.maincolortheme_moodsinglogo-2-hex { color: #022340; }
-.maincolortheme_moodsinglogo-3-hex { color: #64798C; }
-.maincolortheme_moodsinglogo-4-hex { color: #A6A160; }
-.maincolortheme_moodsinglogo-5-hex { color: #F2DC6D; }
+### *Few clouds:*
+![](https://via.placeholder.com/100/0186FC/fff/?text=%230186FC)![](https://via.placeholder.com/100/83B8FE/000/?text=%2383B8FE)![](https://via.placeholder.com/100/94C5FF/000/?text=%2394C5FF)![](https://via.placeholder.com/100/0583F2/fff/?text=%230583F2)![](https://via.placeholder.com/100/056CF2/fff/?text=%23056CF2)
 
-Few clouds:
-.few-clouds-1-hex { color: #056CF2; }
-.few-clouds-2-hex { color: #0583F2; }
-.few-clouds-3-hex { color: #94C5FF; }
-.few-clouds-4-hex { color: #0186FC; }
-.few-clouds-5-hex { color: #83B8FE; }
+### *Sunny:*
+![](https://via.placeholder.com/100/034AA6/FFF/?text=%23034AA6)![](https://via.placeholder.com/100/0477BF/fff/?text=%230477BF)![](https://via.placeholder.com/100/59A8D9/000/?text=%2359A8D9)![](https://via.placeholder.com/100/F2CB05/000/?text=%23F2CB05)![](https://via.placeholder.com/100/BF7E04/FFF/?text=%23BF7E04)
 
-Sunny weather:
-.color-theme_sunny-1-hex { color: #034AA6; }
-.color-theme_sunny-2-hex { color: #0477BF; }
-.color-theme_sunny-3-hex { color: #59A8D9; }
-.color-theme_sunny-4-hex { color: #F2CB05; }
-.color-theme_sunny-5-hex { color: #BF7E04; }
+### *Rain:*
+![](https://via.placeholder.com/100/F0F2F2/000/?text=%23F0F2F2)![](https://via.placeholder.com/100/949FA6/000/?text=%23949FA6)![](https://via.placeholder.com/100/395059/fff/?text=%23395059)![](https://via.placeholder.com/100/2B4032/FFF/?text=%232B4032)![](https://via.placeholder.com/100/1D2426/FFF/?text=%231D2426)
 
-rain:
-.color-theme_rain-1-hex { color: #949FA6; }
-.color-theme_rain-2-hex { color: #395059; }
-.color-theme_rain-3-hex { color: #1D2426; }
-.color-theme_rain-4-hex { color: #F0F2F2; }
-.color-theme_rain-5-hex { color: #2B4032; }
+### *Partly Cloudy:*
+![](https://via.placeholder.com/100/BABDBF/000/?text=%23BABDBF)![](https://via.placeholder.com/100/979DA6/FFF/?text=%23979DA6)![](https://via.placeholder.com/100/6387A6/fff/?text=%236387A6)![](https://via.placeholder.com/100/023859/FFF/?text=%23023859)![](https://via.placeholder.com/100/024059/FFF/?text=%23024059)
 
+### *Thunderstorm:*
+![](https://via.placeholder.com/100/D9BFCD/000/?text=%23D9BFCD)![](https://via.placeholder.com/100/A692A2/000/?text=%23A692A2)![](https://via.placeholder.com/100/534A59/FFF/?text=%23534A59)![](https://via.placeholder.com/100/171726/FFF/?text=%23171726)![](https://via.placeholder.com/100/0D0D0D/FFF/?text=%230D0D0D)
 
-partly cloudy:
-.color-theme_partly-cloudly-1-hex { color: #979DA6; }
-.color-theme_partly-cloudly-2-hex { color: #6387A6; }
-.color-theme_partly-cloudly-3-hex { color: #023859; }
-.color-theme_partly-cloudly-4-hex { color: #BABDBF; }
-.color-theme_partly-cloudly-5-hex { color: #024059; }
+### *Mist:*
+![](https://via.placeholder.com/100/142626/FFF/?text=%23142626)![](https://via.placeholder.com/100/3E5956/fff/?text=%233E5956)![](https://via.placeholder.com/100/BFAF8F/000/?text=%23BFAF8F)![](https://via.placeholder.com/100/F2DAC4/000/?text=%23F2DAC4)![](https://via.placeholder.com/100/BFA89B/FFF/?text=%23BFA89B)
 
-Thunderstorm:
-.color-theme_thunderstrom-1-hex { color: #D9BFCD; }
-.color-theme_thunderstrom-2-hex { color: #A692A2; }
-.color-theme_thunderstrom-3-hex { color: #534A59; }
-.color-theme_thunderstrom-4-hex { color: #171726; }
-.color-theme_thunderstrom-5-hex { color: #0D0D0D; }
-
-Mist:
-.color-theme_mist-1-hex { color: #142626; }
-.color-theme_mist-2-hex { color: #3E5956; }
-.color-theme_mist-3-hex { color: #BFAF8F; }
-.color-theme_mist-4-hex { color: #F2DAC4; }
-.color-theme_mist-5-hex { color: #BFA89B; }
-
-
-Snow:
-.color-theme_snow-1-hex { color: #454E59; }
-.color-theme_snow-2-hex { color: #7C92A6; }
-.color-theme_snow-3-hex { color: #BACBD9; }
-.color-theme_snow-4-hex { color: #DCE8F2; }
-.color-theme_snow-5-hex { color: #0D0D0D; }
-
-
-
-
-
+### *Snow:*
+![](https://via.placeholder.com/100/7C92A6/fff/?text=%237C92A6)![](https://via.placeholder.com/100/BACBD9/000/?text=%23BACBD9)![](https://via.placeholder.com/100/DCE8F2/000/?text=%23DCE8F2)![](https://via.placeholder.com/100/454E59/FFF/?text=%23454E59)![](https://via.placeholder.com/100/0D0D0D/FFF/?text=%230D0D0D)
