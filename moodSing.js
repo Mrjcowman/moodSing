@@ -1,6 +1,6 @@
 
 let GLOBAL_DEV_MODE = true; // TODO: On Deploy, change this to false
-let GLOBAL_SPOTIFY_ENABLED = false;
+let GLOBAL_SPOTIFY_ENABLED = true;
 
 let userForecast,
     userMood,
@@ -196,7 +196,9 @@ function progressBar(elementID) {
 
 function genSpot(trackArray) {
   $("#playList").toggle()
+  console.log("trackArray: "+trackArray)
   trackArray.forEach(track => {
+    console.log(track);
     let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
     $("#playList").append(spotify)
   });
@@ -218,7 +220,11 @@ function moodMatcher(userMood) {
   loudness = moodMatch.loudness,
   danceability = moodMatch.danceability;
   console.log(valence, energy, tempo, loudness, danceability);
-  userMoodParams = [valence, energy, tempo, loudness, danceability]
+  return {valence: valence,
+          energy: energy,
+          tempo: tempo,
+          loudness: loudness,
+          danceability: danceability};
 }
 
 // mood.js
@@ -236,29 +242,60 @@ function moodMatcher(userMood) {
 
 // Returns the track id of a song that matches the passed genre and keyword
 const getSong = (genre, keyword) => {
-  
+  return new Promise((resolve, reject)=>{
+    resolve("6Z34YgqCJkdrliDmbcaJgy")});
 }
 
 // Generates seed songs for the recommendations based on chosen genre, weather, and mood
 const getSeedMusic = (genre, weather, mood) => {
-  // Get a song related to the weather in the genre
-  let weatherSong = getSong(genre, weather);
-  
-  // Get a song related to the mood in the genre
-  let moodSong = getSong(genre, mood);
-  
-  // Return both these songs
-  return [weatherSong, moodSong];
+  return new Promise((resolve, reject)=>{
+    getSong(genre, weather).then(weatherSong=>{
+      getSong(genre, mood).then(moodSong=>{
+        resolve([weatherSong, moodSong]);
+      })
+    })
+  })
 }
 
 // Gets the list of recommended songs based on the passed-in seed music and mood params
-const getMoodSingRecommendations = (seedMusic, weatherParams) => {
+const getMoodSingRecommendations = (genre, weather, mood) => {
+  const backupIDs = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"];
   let trackIDs = [];
-  if(!GLOBAL_SPOTIFY_ENABLED) return ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"];
+  let recPromise = new Promise(async (resolve, reject)=>{
+    // Use default track listing if Spotify API is disabled
+    if(!GLOBAL_SPOTIFY_ENABLED) resolve(backupIDs);
+
+    // Get the seed music and moof parameters to build the query
+    let seedMusic = null;
+    await getSeedMusic(genre, weather, mood).then(seed=>{seedMusic = seed});
+    let moodParams = moodMatcher(mood);
+
+    let query = `seed_tracks=${seedMusic[0]},${seedMusic[1]}`
+              +`&target_valence=${moodParams.valence}`
+              +`&target_energy=${moodParams.energy}`
+              +`&target_tempo=${moodParams.tempo}`
+              +`&target_loudness=${moodParams.loudness}`
+              +`&target_danceability=${moodParams.danceability}`;
+    
+    let authorization = "Bearer "+getAccessToken();
+    
+    // Get the recommendations, then pass their IDs in the resolution
+    fetch(`https://api.spotify.com/v1/recommendations?${query}`, {
+      headers: {"Authorization": authorization}
+    })
+      .then(response=>{
+        console.log(authorization);
+        return response.json();
+      }).then(data=>{
+        console.log(data);
+        resolve(backupIDs);
+      }).catch(error=>{
+        reject(error);
+      });
+  });
 
 
-
-  return trackIDs;
+  return recPromise;
 }
 
 // event.listeners to pull input from user
@@ -276,10 +313,10 @@ $("#mood-form").on("submit", function (event) {
   $("#genre-prompt").toggle()
 })
 
-$("#genre-form").on("submit", function (event) {
+$("#genre-form").on("submit", async function (event) {
   event.preventDefault();
   userGenre = $("#genre-input").val()
   $("#genre-prompt").toggle()
   console.log(userGenre);
-  genSpot(getMoodSingRecommendations(getSeedMusic(userGenre, userForecast, userMood), moodMatcher(userMood)));
+  getMoodSingRecommendations(userGenre, userForecast, userMood).then(recs=>genSpot(recs));
 })
