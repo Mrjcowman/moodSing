@@ -54,7 +54,7 @@ const getSpotifyAuthorization = (devMode=false) => {
 
       console.log(data);
 
-      if(data.appId!="null"){
+      if(data.appId!="null"&&data.appId!=null){
         console.log("appId successfully retrieved!");
 
         requestSpotifyAccessToken(data.appId);
@@ -65,6 +65,7 @@ const getSpotifyAuthorization = (devMode=false) => {
     }).catch(error=>{
       GLOBAL_DEV_MODE = true;
       GLOBAL_SPOTIFY_ENABLED = false;
+      console.log("Null token found!")
     })
 }
 
