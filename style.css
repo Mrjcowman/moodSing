@@ -72,8 +72,13 @@ body {
     background:  #F2DC6D;
     border-radius: 25px ;
     padding: 5px 5px; 
-    height: 600px;
+    height: fit-content;
     margin-left: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);  
 
 }
 
