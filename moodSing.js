@@ -186,6 +186,7 @@ function startHide () {
   $("#mood-prompt").hide()
   $("#genre-prompt").hide()
   $("#playList").hide()
+  $("#userForecast").hide()
 }
 
 function progressBar(elementID) {
