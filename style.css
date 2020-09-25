@@ -20,13 +20,6 @@ footer {
    
 }
 
-.container {
-    margin-left: 5vw;
-    border: black;
-    margin: 20px 20px 20px 20px;
-    display: flex;
-    justify-content: space-around;
-}
 
 
 #logo {
@@ -60,11 +53,13 @@ footer {
 
 #playList {
     text-align: center;
-    background: #F2DC6D;
     border-radius: 25px;
     padding: 5px 5px;
-    height: 600px;
-    margin-left: 30px;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    margin-top: 30px ;
+
 }
 
 #userForecast {
@@ -87,20 +82,19 @@ footer {
 /* ====================THEMES==================== */
 
 
-/* Default Theme: 
-extra background  { background: #A6A160; } */
+/* Default Theme: */
 
 .default {
-    background: #022340;
+    background: #B0B7BF;
 }
 
 .prompt.default {
     background: #64798C;
 }
 
-header.default,
+nav.default,
 footer.default {
-    background: #B0B7BF;
+    background: #022340;
 }
 
 .box.default {
@@ -114,9 +108,8 @@ footer.default {
     background: #E2DAFE;
 }
 
-header.fewClouds,
+nav.fewClouds,
 footer.fewClouds {
-    background-color: #94C5FF;
     background: #0583F2;
 }
 
@@ -129,14 +122,13 @@ footer.fewClouds {
 }
 
 
-/* Sunny Theme: 
-extra color { background: #BF7E04; } */
+/* Sunny Theme: */
 
 .sunny {
     background: #F2CB05
 }
 
-header.sunny,
+nav.sunny,
 footer.sunny {
     background: #59A8D9;
 }
@@ -150,14 +142,13 @@ footer.sunny {
 }
 
 
-/* Rain Theme: 
-extra color { background: #F0F2F2; } */
+/* Rain Theme:  */
 
 .rain {
     background: #395059;
 }
 
-header.rain,
+nav.rain,
 footer.rain {
     background: #949FA6;
 }
@@ -167,21 +158,20 @@ footer.rain {
 }
 
 .prompt.rain {
-    background: #395059;
+    background: #F0F2F2;
 }
 
 
-/* Partly Cloudy Theme: 
-.background-theme_partly-cloudly-3-hex { background: #023859; } */
+/* /* Partly Cloudy Theme:  */
 
 .partlyCloudy {
     background: #6387A6;
 }
 
-header.partlyCloudy,
+nav.partlyCloudy,
 footer.partlyCloudy {
-    background-color: #024059;
-    background: #979DA6;
+    background: #024059;
+    
 }
 
 .box.partlyCloudy {
@@ -189,23 +179,20 @@ footer.partlyCloudy {
 }
 
 .prompt.partlyCloudy {
-    background-color: #BABDBF;
+    
     background: #023859;
 }
 
-#weather.partlyCloudy {
-    /* TODO: */
-}
 
 
-/* Thunderstorm Theme: 
-.background-theme_thunderstrom-1-hex { background: #D9BFCD; } */
+
+/* thunderstorm theme */
 
 .thunderstorm {
     background: #A692A2;
 }
 
-header.thunderstorm,
+nav.thunderstorm,
 footer.thunderstorm {
     background: #0D0D0D;
 }
@@ -218,44 +205,36 @@ footer.thunderstorm {
     background: #534A59;
 }
 
-#weather.thunderstorm {
-    /* TODO: */
-}
 
 
-/* Mist Theme: 
-.background-theme_mist-1-hex { background: #142626; } */
 
+
+/* mist theme */
 .mist {
     background: #3E5956;
 }
 
-header.mist,
+nav.mist,
 footer.mist {
     background: #BFA89B;
 }
 
-.box.mist {
-    /* TODO: */
+.box.mist { 
+    background: #BFAF8F;
+    
 }
 
 .prompt.mist {
     background: #3E5956;
 }
 
-#weather.mist {
-    background: #BFAF8F;
-}
-
-
-/* Snow Theme: 
-.background-theme_snow-5-hex { background: #0D0D0D; } */
+ /* Snow Theme:  */
 
 .snow {
     background: #7C92A6;
 }
 
-header.snow,
+nav.snow,
 footer.snow {
     background: #454E59;
 }
@@ -268,6 +247,3 @@ footer.snow {
     background: #BACBD9;
 }
 
-#weather.snow {
-    /* TODO: */
-}
