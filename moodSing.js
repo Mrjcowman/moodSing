@@ -325,16 +325,27 @@ $("#accept-weather-btn").on("click", function (event) {
 
 $("#mood-form").on("submit", function (event) {
   event.preventDefault();
-  userMood = $("#mood-input").val()
+  if (mood.some(function (el) { return el.moodType === $("#mood-input").val().toLowerCase() })) {
+    userMood = $("#mood-input").val()
   $("#mood-prompt").toggle()
   console.log(userMood);
   $("#genre-prompt").toggle()
+  } else {
+    M.toast({ html: "Please enter a mood we have mapped" })
+    return
+  }
 })
 
 $("#genre-form").on("submit", async function (event) {
   event.preventDefault();
+  
+  if (genreList.some(function (el) { return el.genreType === $("#genre-input").val().toLowerCase() })) {
   userGenre = $("#genre-input").val()
   $("#genre-prompt").toggle()
   console.log(userGenre);
   getMoodSingRecommendations(userGenre, userForecast, userMood).then(recs=>genSpot(recs));
+  } else {
+    M.toast({ html: "Please enter a genre we have mapped" })
+    return
+  }
 })

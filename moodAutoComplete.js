@@ -99,5 +99,6 @@ $(document).ready(function () {
             "anxious": null,
             "dejected":null
         },
+        limit: 4
     });
 });
