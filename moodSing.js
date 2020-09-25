@@ -243,13 +243,26 @@ function moodMatcher(userMood) {
 // Returns the track id of a song that matches the passed genre and keyword
 const getSong = (genre, keyword) => {
   return new Promise((resolve, reject)=>{
-    resolve("6Z34YgqCJkdrliDmbcaJgy")});
+    fetch(`https://api.spotify.com/v1/search?q=${keyword} genre: ${genre}&type=track&market=US&limit=1`,
+      {
+        headers: {"Authorization": "Bearer "+getAccessToken()}
+      })
+      .then(response=>{
+        return response.json();
+      }).then(data=>{
+        console.log(data)
+        let id = data.tracks.items[0].id;
+        console.log("SONG GET: GENRE - "+genre+" KEYWORD - "+keyword+" ID - "+id)
+        resolve(id);
+      })
+  });
 }
 
 // Generates seed songs for the recommendations based on chosen genre, weather, and mood
 const getSeedMusic = (genre, weather, mood) => {
+  trimmedWeather = weather.split(" ")[0];
   return new Promise((resolve, reject)=>{
-    getSong(genre, weather).then(weatherSong=>{
+    getSong(genre, trimmedWeather).then(weatherSong=>{
       getSong(genre, mood).then(moodSong=>{
         resolve([weatherSong, moodSong]);
       })
