@@ -1,65 +1,75 @@
+
+let GLOBAL_DEV_MODE = true; // TODO: On Deploy, change this to false
+let GLOBAL_SPOTIFY_ENABLED = true;
+
 let userForecast,
     userMood,
     userGenre;
 
 // Closure for the Access Token to keep it from being directly accessed by user
-// function makeAccessToken(accessToken){
-//   let aT = accessToken;
+function makeAccessToken(accessToken){
+  let aT = accessToken;
+  
+  const getAccessToken = ()=>{
+    return aT;
+  }
+  return getAccessToken;
+}
 
-//   const getAccessToken = ()=>{
-//     return aT;
-//   }
-//   return getAccessToken;
-// }
 
-// let getAccessToken = ()=>{return null};
+let getAccessToken = ()=>{return null};
 
 // Get the Access Token from Spotify to use for the rest of the Spotify calls
-// const requestSpotifyAccessToken = (appId)=>{
-//   fetch("https://accounts.spotify.com/api/token", {
-//     method: 'POST',
-//     headers: {
-//       "Content-Type": "application/x-www-form-urlencoded",
-//       "Authorization": "Basic "+appId
-//     },
-//     body: "grant_type=client_credentials"
-//   }).then(response=>{
-//     return response.json();
-//   }).then(data=>{
-//     console.log("Access Token Retrieved!");
-//     getAccessToken = makeAccessToken(data.access_token);
-//   })
-// }
+const requestSpotifyAccessToken = (appId)=>{
+  fetch("https://accounts.spotify.com/api/token", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Basic "+appId
+    },
+    body: "grant_type=client_credentials"
+  }).then(response=>{
+    return response.json();
+  }).then(data=>{
+    console.log("Access Token Retrieved!");
+    getAccessToken = makeAccessToken(data.access_token);
+  }).catch(error=>{
+    GLOBAL_DEV_MODE = true;
+    GLOBAL_SPOTIFY_ENABLED = false;
+  })
+}
 
 // Get the authorization from moodSingCure, then send it to Spotify with requestSpotifyAccessToken
-// const getSpotifyAuthorization = (devMode=false) => {
-//   console.log("Getting appId!");
-//   // Fetch the encoded authorization token from moodSingCure, or localhost if devMode is true
-//   fetch(
-//     devMode?"http://localhost:5000/appid":
-//       "https://mood-sing-cure.herokuapp.com/appid",
-//     {mode: ("cors")})
-//     .then(response=>{
-//       return response.json()
-//     }).then(data=>{
-//       if(!data.appId) throw new Error("No Spotify Token found!");
+const getSpotifyAuthorization = (devMode=false) => {
+  console.log("Getting appId!");
+  // Fetch the encoded authorization token from moodSingCure, or localhost if devMode is true
+  fetch(
+    devMode?"http://localhost:5000/appid":
+      "https://mood-sing-cure.herokuapp.com/appid",
+    {mode: ("cors")})
+    .then(response=>{
+      return response.json()
+    }).then(data=>{
+      if(!data.appId) throw new Error("No Spotify Token found!");
 
-//       console.log(data);
+      console.log(data);
 
-//       if(data.appId!="null"){
-//         console.log("appId successfully retrieved!");
+      if(data.appId!="null"){
+        console.log("appId successfully retrieved!");
 
-//         requestSpotifyAccessToken(data.appId);
+        requestSpotifyAccessToken(data.appId);
 
-//       }else{
-//         throw new Error("Could not access Spotify Token! Null Token found");
-//       }
-//     }).catch(error=>{
+      }else{
+        throw new Error("Could not access Spotify Token! Null Token found");
+      }
+    }).catch(error=>{
+      GLOBAL_DEV_MODE = true;
+      GLOBAL_SPOTIFY_ENABLED = false;
+    })
+}
 
-//     })
-// }
+getSpotifyAuthorization(GLOBAL_DEV_MODE);  
 
-// getSpotifyAuthorization(true);  // TODO: On Deploy, change this to false
 
 // Function to initialize page
 function init(){
@@ -184,14 +194,124 @@ function progressBar(elementID) {
   elementID.append(progress);
 }
 
-const testArr = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"]
-
-function genSpot() {
+function genSpot(trackArray) {
   $("#playList").toggle()
-  testArr.forEach(track => {
+  console.log("trackArray: "+trackArray)
+  trackArray.forEach(track => {
+    console.log(track);
     let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
     $("#playList").append(spotify)
   });
+}
+
+
+
+// mood
+// ====================================================================
+// take user input to match with a preset mood
+// pull spotify perameters for preset mood from mood.js
+
+function moodMatcher(userMood) {
+  const moodMatch = mood.find(moodObject => moodObject.moodType = userMood.toLowerCase());
+  console.log(moodMatch);
+  let valence = moodMatch.valence,
+  energy = moodMatch.energy,
+  tempo = moodMatch.tempo,
+  loudness = moodMatch.loudness,
+  danceability = moodMatch.danceability;
+  console.log(valence, energy, tempo, loudness, danceability);
+  return {valence: valence,
+          energy: energy,
+          tempo: tempo,
+          loudness: loudness,
+          danceability: danceability};
+}
+
+// mood.js
+// ====================================================================
+// object relating moods to spotify perameters
+
+
+
+
+
+
+
+// spotify api stuff
+// ====================================================================
+
+// Returns the track id of a song that matches the passed genre and keyword
+const getSong = (genre, keyword) => {
+  return new Promise((resolve, reject)=>{
+    fetch(`https://api.spotify.com/v1/search?q=${keyword} genre: ${genre}&type=track&market=US&limit=1`,
+      {
+        headers: {"Authorization": "Bearer "+getAccessToken()}
+      })
+      .then(response=>{
+        return response.json();
+      }).then(data=>{
+        console.log(data)
+        let id = data.tracks.items[0].id;
+        console.log("SONG GET: GENRE - "+genre+" KEYWORD - "+keyword+" ID - "+id)
+        resolve(id);
+      })
+  });
+}
+
+// Generates seed songs for the recommendations based on chosen genre, weather, and mood
+const getSeedMusic = (genre, weather, mood) => {
+  trimmedWeather = weather.split(" ")[0];
+  return new Promise((resolve, reject)=>{
+    getSong(genre, trimmedWeather).then(weatherSong=>{
+      getSong(genre, mood).then(moodSong=>{
+        resolve([weatherSong, moodSong]);
+      })
+    })
+  })
+}
+
+// Gets the list of recommended songs based on the passed-in seed music and mood params
+const getMoodSingRecommendations = (genre, weather, mood) => {
+  const backupIDs = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"];
+  let trackIDs = [];
+  let recPromise = new Promise(async (resolve, reject)=>{
+    // Use default track listing if Spotify API is disabled
+    if(!GLOBAL_SPOTIFY_ENABLED) resolve(backupIDs);
+
+    // Get the seed music and moof parameters to build the query
+    let seedMusic = null;
+    await getSeedMusic(genre, weather, mood).then(seed=>{seedMusic = seed});
+    let moodParams = moodMatcher(mood);
+
+    let query = `seed_tracks=${seedMusic[0]},${seedMusic[1]}`
+              +`&target_valence=${moodParams.valence}`
+              +`&target_energy=${moodParams.energy}`
+              +`&target_tempo=${moodParams.tempo}`
+              +`&target_loudness=${moodParams.loudness}`
+              +`&target_danceability=${moodParams.danceability}`;
+    
+    let authorization = "Bearer "+getAccessToken();
+    
+    // Get the recommendations, then pass their IDs in the resolution
+    fetch(`https://api.spotify.com/v1/recommendations?${query}`, {
+      headers: {"Authorization": authorization}
+    })
+      .then(response=>{
+        console.log(authorization);
+        return response.json();
+      }).then(data=>{
+        console.log(data);
+        data.tracks.forEach(track=>{
+          trackIDs.push(track.id);
+        })
+        resolve(trackIDs);
+      }).catch(error=>{
+        reject(error);
+      });
+  });
+
+
+  return recPromise;
 }
 
 // event.listeners to pull input from user
@@ -209,43 +329,10 @@ $("#mood-form").on("submit", function (event) {
   $("#genre-prompt").toggle()
 })
 
-$("#genre-form").on("submit", function (event) {
+$("#genre-form").on("submit", async function (event) {
   event.preventDefault();
   userGenre = $("#genre-input").val()
   $("#genre-prompt").toggle()
   console.log(userGenre);
-  genSpot();
+  getMoodSingRecommendations(userGenre, userForecast, userMood).then(recs=>genSpot(recs));
 })
-
-
-// mood
-// ====================================================================
-// take user input to match with a preset mood
-// pull spotify perameters for preset mood from mood.js
-
-function moodMatcher(userMood) {
-  const moodMatch = mood.find(moodObject => moodObject.moodType = userMood.toLowerCase());
-  console.log(moodMatch);
-  let valence = moodMatch.valence,
-    energy = moodMatch.energy,
-    tempo = moodMatch.tempo,
-    loudness = moodMatch.loudness,
-    danceability = moodMatch.danceability;
-  console.log(valence, energy, tempo, loudness, danceability);
-  userMoodParams = [valence, energy, tempo, loudness, danceability]
-}
-
-// mood.js
-// ====================================================================
-// object relating moods to spotify perameters
-
-
-
-
-
-
-
-// spotify api 
-// ====================================================================
-// take in request from user on search
-// returns widget data from spotify search
