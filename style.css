@@ -8,8 +8,25 @@ body {
     background: #022340;
     display: flex;
     min-height: 10vh;
-    flex-direction: column;
+    flex-direction: column; 
+
+
 }
+.row > col-16{
+    width: 200px;
+
+}
+ .main {
+    flex: 1 0 auto;
+
+  }
+
+#logo{
+    width:60px; 
+    height: 60px;
+}
+
+
 .box {
     background-color: #022340;
     background: #64798C;
@@ -52,17 +69,26 @@ body {
     
 #playList {
     text-align: center;
-    /* border: 3px solid black;  */
     background:  #F2DC6D;
     border-radius: 25px ;
     padding: 5px 5px; 
     height: 600px;
-    /* width: 300px;  */
     margin-left: 30px;
 
+}
 
+#weather{
+    text-align: center;
+    background:  #F2DC6D;
+    border-radius: 25px ;
+    padding: 5px 5px; 
+    height: 200px;
+    margin-left: 30px;
 
 }
+
+
+
 #spotify-icon {
     width:30px; 
     height: 30px;
@@ -77,8 +103,12 @@ top: 10px;
 
 }
 
+
 body {
     font-family: 'poiret one', cursive;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 .default {
