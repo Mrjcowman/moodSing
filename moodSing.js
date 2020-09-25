@@ -164,112 +164,102 @@ function localForecast(grid) {
 // background/scheme change 
 // ====================================================================
 // switch statement to apply backrground/theme change
-let scheme = substring
-if (scheme == null) {
+
+function changeBackgroundSchemeChange() {
+
+    if (imageUrl == null) {
+
+    }
+
+    switch (imageUrl.substring(44, imageUrl.length - 4)) {
+        case "few":
+        case "nfew":
+        case "sct":
+        case "nsct":
+        case "wind_few":
+        case "nwind_few":
+        case "wind_sct":
+        case "nwind_sct":
+            scheme(fewCloudsScheme);
+            break;
+        case "skc":
+        case "nskc":
+        case "wind_skc":
+        case "nwind_skc":
+        case "hot":
+            scheme(sunnyWeatherScheme);
+            break;
+        case "shra":
+        case "nshra":
+        case "hi_shwrs":
+        case "hi_nshwrs":
+        case "ra":
+        case "nra":
+        case "minus_ra":
+        case "nra":
+        case "raip":
+        case "nraip":
+        case "fzra":
+        case "nfzra":
+        case "ra_fzra":
+        case "nra_fzra":
+            scheme(rainScheme);
+            break;
+        case "bkn":
+        case "nbkn":
+        case "ovc":
+        case "novc":
+        case "wind_bkn":
+        case "nwind_bkn":
+        case "wind_ovc":
+        case "nwind_ovc":
+            scheme(partlyCloudyScheme);
+            break;
+        case "tsra":
+        case "ntsra":
+        case "scttsra":
+        case "nscttsra":
+        case "hi_tsra":
+        case "hi_ntsra":
+        case "fc":
+        case "nfc":
+        case "tor":
+        case "ntor":
+        case "hur_warn":
+        case "hur_watch":
+        case "ts_warn":
+        case "ts_watch":
+        case "ts_nowarn":
+            scheme(thunderStormScheme);
+            break;
+        case "du":
+        case "ndu":
+        case "fu":
+        case "nfu":
+        case "hz":
+            scheme(mistScheme);
+            break;
+        case "ra_sn":
+        case "nra_sn":
+        case "fzra_sn":
+        case "nfzra_sn":
+        case "ip":
+        case "nip":
+        case "snip":
+        case "nsnip":
+        case "cold":
+        case "ncold":
+        case "blizzard":
+        case "nblizzard":
+        case "fg":
+        case "nfg":
+            scheme(snowScheme);
+            break;
+        default:
+            scheme(partlyCloudyScheme);
+    }
 
 }
-
-switch (scheme.substring(44, scheme.length - 4)) {
-    case "few":
-    case "nfew":
-    case "sct":
-    case "nsct":
-    case "wind_few":
-    case "nwind_few":
-    case "wind_sct":
-    case "nwind_sct":
-        scheme(fewCloudsScheme);
-        break;
-    case "skc":
-    case "nskc":
-    case "wind_skc":
-    case "nwind_skc":
-    case "hot":
-        scheme(sunnyWeatherScheme);
-        break;
-    case "shra":
-    case "nshra":
-    case "hi_shwrs":
-    case "hi_nshwrs":
-    case "ra":
-    case "nra":
-    case "minus_ra":
-    case "nra":
-    case "raip":
-    case "nraip":
-    case "fzra":
-    case "nfzra":
-    case "ra_fzra":
-    case "nra_fzra":
-        scheme(rainScheme);
-        break;
-    case "bkn":
-    case "nbkn":
-    case "ovc":
-    case "novc":
-    case "wind_bkn":
-    case "nwind_bkn":
-    case "wind_ovc":
-    case "nwind_ovc":
-        scheme(partlyCloudyScheme);
-        break;
-    case "tsra":
-    case "ntsra":
-    case "scttsra":
-    case "nscttsra":
-    case "hi_tsra":
-    case "hi_ntsra":
-    case "fc":
-    case "nfc":
-    case "tor":
-    case "ntor":
-    case "hur_warn":
-    case "hur_watch":
-    case "ts_warn":
-    case "ts_watch":
-    case "ts_nowarn":
-        scheme(thunderStormScheme);
-        break;
-    case "du":
-    case "ndu":
-    case "fu":
-    case "nfu":
-    case "hz":
-        scheme(mistScheme);
-        break;
-    case "ra_sn":
-    case "nra_sn":
-    case "fzra_sn":
-    case "nfzra_sn":
-    case "ip":
-    case "nip":
-    case "snip":
-    case "nsnip":
-    case "cold":
-    case "ncold":
-    case "blizzard":
-    case "nblizzard":
-    case "fg":
-    case "nfg":
-        scheme(snowScheme);
-        break;
-    default:
-        scheme(partlyCloudyScheme);
-}
-console.log(scheme)
-
-
-// switch(expression) {
-//     case sunny:
-//       (content)=sunnyWeatherTheme
-//       break;
-//     case cloudy:
-//       (content)=cloudyWeatherTheme
-//       break;
-//     default:
-//       (content)=defaultAppTheme
-//   }
-
 
 
 // render page
@@ -280,6 +270,20 @@ console.log(scheme)
 //        -mood
 // render playlists
 
+function startHide() {
+    $("#weather-approval").hide()
+    $("#mood-prompt").hide()
+    $("#playList").hide()
+
+}
+
+function progressBar(elementID) {
+    let indeterminate = $("<div>").addClass("indeterminate"),
+        progress = $("<div>").addClass("progress");
+    progress.append(indeterminate);
+    elementID.append(progress);
+}
+
 const testArr = ["6Z34YgqCJkdrliDmbcaJgy", "6kyiWsforDWCq1VBCm4BNZ", "2Cu5ExXidcoE4vF5hIYict", "2VBYFWgwIlJjyzidPTHQqp", "6cd1yCz5aapoeauiLH9dcU", "4c2W3VKsOFoIg2SFaO6DY5", "1nmeX39rjGxyaoSkPxSHwr", "38iCfXPXqyeEHsNtlxjtSG", "50PU05RTGva8laKDwxED9Y", "63w0QA1wiV7QhF9jeiHETF"]
 
 function genSpot() {
@@ -289,8 +293,21 @@ function genSpot() {
     });
 }
 
-genSpot()
+// event.listeners to pull input from user
 
+// ====================================================================
+$("#accept-weather-btn").on("click", function(event) {
+    event.preventDefault();
+    weatherForecast();
+})
+
+$("#mood-form").on("submit", function(event) {
+    event.preventDefault();
+    let userMood = $("#mood-input").val()
+    $("#mood-prompt").toggle()
+    console.log(userMood);
+    moodMatcher(userMood)
+})
 
 
 
