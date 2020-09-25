@@ -288,7 +288,10 @@ const getMoodSingRecommendations = (genre, weather, mood) => {
         return response.json();
       }).then(data=>{
         console.log(data);
-        resolve(backupIDs);
+        data.tracks.forEach(track=>{
+          trackIDs.push(track.id);
+        })
+        resolve(trackIDs);
       }).catch(error=>{
         reject(error);
       });
