@@ -1,0 +1,249 @@
+body {
+    background: #B0B7BF;
+    font-family: 'poiret one', cursive;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+nav {
+    background: #022340;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    background: #022340;
+    height: 50px;
+   
+}
+
+
+
+#logo {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    top: 10px;
+}
+
+.box {
+    background-color: #022340;
+    background: #64798C;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 350px;
+    width: 700px;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid #F2DC6D;
+    padding: 20px;
+}
+
+#accept-weather-btn {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#playList {
+    text-align: center;
+    border-radius: 25px;
+    padding: 5px 5px;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    margin-top: 30px ;
+
+}
+
+#userForecast {
+    text-align: center;
+    background: #F2DC6D;
+    border-radius: 25px;
+    padding: 5px 5px;
+    height: 200px;
+    margin-left: 30px;
+}
+
+#spotify-icon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 10px;
+}
+
+
+/* ====================THEMES==================== */
+
+
+/* Default Theme: */
+
+.default {
+    background: #B0B7BF;
+}
+
+.prompt.default {
+    background: #64798C;
+}
+
+nav.default,
+footer.default {
+    background: #022340;
+}
+
+.box.default {
+    background: #F2DC6D;
+}
+
+
+/* Few Clouds Theme: */
+
+.fewClouds {
+    background: #E2DAFE;
+}
+
+nav.fewClouds,
+footer.fewClouds {
+    background: #0583F2;
+}
+
+.box.fewClouds {
+    background: #0186FC;
+}
+
+.prompt.fewClouds {
+    background: #83B8FE;
+}
+
+
+/* Sunny Theme: */
+
+.sunny {
+    background: #F2CB05
+}
+
+nav.sunny,
+footer.sunny {
+    background: #59A8D9;
+}
+
+.box.sunny {
+    background: #034AA6;
+}
+
+.prompt.sunny {
+    background: #0477BF;
+}
+
+
+/* Rain Theme:  */
+
+.rain {
+    background: #395059;
+}
+
+nav.rain,
+footer.rain {
+    background: #949FA6;
+}
+
+.box.rain {
+    background: #2B4032;
+}
+
+.prompt.rain {
+    background: #F0F2F2;
+}
+
+
+/* /* Partly Cloudy Theme:  */
+
+.partlyCloudy {
+    background: #6387A6;
+}
+
+nav.partlyCloudy,
+footer.partlyCloudy {
+    background: #024059;
+    
+}
+
+.box.partlyCloudy {
+    background: lightgoldenrodyellow;
+}
+
+.prompt.partlyCloudy {
+    
+    background: #023859;
+}
+
+
+
+
+/* thunderstorm theme */
+
+.thunderstorm {
+    background: #A692A2;
+}
+
+nav.thunderstorm,
+footer.thunderstorm {
+    background: #0D0D0D;
+}
+
+.box.thunderstorm {
+    background: #171726;
+}
+
+.prompt.thunderstorm {
+    background: #534A59;
+}
+
+
+
+
+
+/* mist theme */
+.mist {
+    background: #3E5956;
+}
+
+nav.mist,
+footer.mist {
+    background: #BFA89B;
+}
+
+.box.mist { 
+    background: #BFAF8F;
+    
+}
+
+.prompt.mist {
+    background: #3E5956;
+}
+
+ /* Snow Theme:  */
+
+.snow {
+    background: #7C92A6;
+}
+
+nav.snow,
+footer.snow {
+    background: #454E59;
+}
+
+.box.snow {
+    background: #DCE8F2;
+}
+
+.prompt.snow {
+    background: #BACBD9;
+}
+
