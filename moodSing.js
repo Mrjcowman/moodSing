@@ -195,10 +195,13 @@ function removeThemes(exception = "") {
         classString = splitClassString[0]
     }
 
-    $("*").removeClass(classString)
+    splitClassString = classString.split(/ +/);
+
+    $("*").removeClass(splitClassString)
 }
 
 function renderWeatherTheme(imageUrl) {
+    console.log(imageUrl);
 
 
     if (imageUrl == null) {
@@ -206,7 +209,12 @@ function renderWeatherTheme(imageUrl) {
         return;
     }
 
-    switch (imageUrl.substring(44, imageUrl.length - 4)) {
+    let splitUrl = imageUrl.split("?")[0].split("/");
+    let imageFileName = splitUrl[splitUrl.length - 1].split(",")[0];
+
+    console.log(imageFileName);
+
+    switch (imageFileName) {
         case "few":
         case "nfew":
         case "sct":
@@ -224,6 +232,12 @@ function renderWeatherTheme(imageUrl) {
         case "hot":
             applyTheme("sunny");
             break;
+        case "rain_sleet":
+        case "rain_fzra":
+        case "sleet":
+        case "rain":
+        case "rain_showers":
+        case "rain_showers_hi":
         case "shra":
         case "nshra":
         case "hi_shwrs":
@@ -251,6 +265,11 @@ function renderWeatherTheme(imageUrl) {
             applyTheme("partlyCloudy");
             break;
         case "tsra":
+        case "tsra_sct":
+        case "tsra_hi":
+        case "tornado":
+        case "hurricane":
+        case "tropical_storm":
         case "ntsra":
         case "scttsra":
         case "nscttsra":
@@ -268,12 +287,21 @@ function renderWeatherTheme(imageUrl) {
             applyTheme("thunderstorm");
             break;
         case "du":
+        case "dust":
+        case "smoke":
+        case "haze":
+        case "fog":
         case "ndu":
         case "fu":
         case "nfu":
         case "hz":
             applyTheme("mist");
             break;
+        case "snow":
+        case "cold":
+        case "rain_snow":
+        case "snow_sleet":
+        case "snow_fzra":
         case "ra_sn":
         case "nra_sn":
         case "fzra_sn":
