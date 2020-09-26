@@ -1,4 +1,4 @@
-let GLOBAL_DEV_MODE = true; // TODO: On Deploy, change this to false
+let GLOBAL_DEV_MODE = false; // TODO: On Deploy, change this to false
 let GLOBAL_SPOTIFY_ENABLED = true;
 
 let userForecast,
