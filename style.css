@@ -8,15 +8,18 @@ body {
 
 nav {
     background: #022340;
+    min-height: 80px;
 }
 
 main {
     flex: 1 0 auto;
 }
 
+
 footer {
     background: #022340;
-    height: 50px;
+    min-height: 50px;
+    text-align: center;
    
 }
 
@@ -30,26 +33,22 @@ footer {
 }
 
 .box {
-    background-color: #022340;
-    background: #64798C;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 350px;
-    width: 700px;
+   
+    /* position: fixed;
+    transform: translate(-50%, -50%); */
     text-align: center;
     border-radius: 25px;
     border: 2px solid #F2DC6D;
-    padding: 20px;
+    height: 80%;
+    margin-top: 30px;
+    padding: 20px;   
+    
 }
 
-#accept-weather-btn {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+iframe {
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
 #playList {
     text-align: center;
@@ -77,6 +76,7 @@ footer {
     position: relative;
     top: 10px;
 }
+
 
 
 /* ====================THEMES==================== */
