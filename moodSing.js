@@ -529,3 +529,9 @@ $("#genre-form").on("submit", async function(event) {
         return
     }
 })
+
+$("#smile-btn").on("click", function (event) {
+    event.preventDefault();
+    startHide()
+    $("#mood-prompt").toggle()
+  })
