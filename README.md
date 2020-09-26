@@ -52,3 +52,15 @@ Thank you to the developers of the following APIs for making moodSing possible!
 
 ### *Snow:*
 ![](https://via.placeholder.com/100/7C92A6/fff/?text=%237C92A6)![](https://via.placeholder.com/100/BACBD9/000/?text=%23BACBD9)![](https://via.placeholder.com/100/DCE8F2/000/?text=%23DCE8F2)![](https://via.placeholder.com/100/454E59/FFF/?text=%23454E59)![](https://via.placeholder.com/100/0D0D0D/FFF/?text=%230D0D0D)
+
+## Data Analysis for Moods
+
+https://docs.google.com/spreadsheets/d/1P7G5RYoqyl5em3w8AbFFX_33M3S1rd1eRJU5-pTjDdA/edit?usp=sharing
+
+## Citations
+
+1. Warriner, A.B., Kuperman, V. & Brysbaert, M. Norms of valence, arousal, and dominance for 13,915 English lemmas. Behav Res 45, 1191–1207 (2013). https://doi.org/10.3758/s13428-012-0314-x
+
+2. Castillo, Susana & Wallraven, Christian & Cunningham, Douglas. (2014). The semantic space for facial communication. Computer Animation and Virtual Worlds. 25. 10.1002/cav.1593. https://www.researchgate.net/figure/Two-dimensional-circumplex-space-model-and-its-emotional-samples-plotted-on-the_fig3_50805681
+
+3. Schuller, B., Dorfner, J. & Rigoll, G. Determination of Nonprototypical Valence and Arousal in Popular Music: Features and Performances. J AUDIO SPEECH MUSIC PROC. 2010, 735854 (2010). https://doi.org/10.1155/2010/735854
