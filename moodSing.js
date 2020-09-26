@@ -153,6 +153,7 @@ function localForecast(grid) {
         console.log(forecast.properties.periods[0].shortForecast);
         $("#mood-prompt").toggle()
         userForecast = forecast.properties.periods[0].shortForecast
+        renderWeatherTheme(forecast.properties.periods[0].icon)
     });
 }
 
@@ -172,6 +173,127 @@ function localForecast(grid) {
 //     default:
 //       (content)=defaultAppTheme
 //   }
+
+function applyTheme(theme = "default") {
+    $(".default").addClass(theme)
+    $(".fewClouds").addClass(theme)
+    $(".sunny").addClass(theme)
+    $(".rain").addClass(theme)
+    $(".partlyCloudy").addClass(theme)
+    $(".thunderstorm").addClass(theme)
+    $(".mist").addClass(theme)
+    $(".snow").addClass(theme)
+    removeThemes(theme)
+}
+
+function removeThemes(exception = "") {
+    let classString = "default fewClouds sunny rain partlyCloudy thunderstorm mist snow";
+    let splitClassString = classString.split(exception)
+    if (splitClassString.length > 1) {
+        classString = splitClassString[0] + splitClassString[1]
+    } else {
+        classString = splitClassString[0]
+    }
+
+    $("*").removeClass(classString)
+}
+
+function renderWeatherTheme(imageUrl) {
+
+
+    if (imageUrl == null) {
+        applyTheme("default")
+        return;
+    }
+
+    switch (imageUrl.substring(44, imageUrl.length - 4)) {
+        case "few":
+        case "nfew":
+        case "sct":
+        case "nsct":
+        case "wind_few":
+        case "nwind_few":
+        case "wind_sct":
+        case "nwind_sct":
+            applyTheme("fewClouds");
+            break;
+        case "skc":
+        case "nskc":
+        case "wind_skc":
+        case "nwind_skc":
+        case "hot":
+            applyTheme("sunny");
+            break;
+        case "shra":
+        case "nshra":
+        case "hi_shwrs":
+        case "hi_nshwrs":
+        case "ra":
+        case "nra":
+        case "minus_ra":
+        case "nra":
+        case "raip":
+        case "nraip":
+        case "fzra":
+        case "nfzra":
+        case "ra_fzra":
+        case "nra_fzra":
+            applyTheme("rain");
+            break;
+        case "bkn":
+        case "nbkn":
+        case "ovc":
+        case "novc":
+        case "wind_bkn":
+        case "nwind_bkn":
+        case "wind_ovc":
+        case "nwind_ovc":
+            applyTheme("partlyCloudy");
+            break;
+        case "tsra":
+        case "ntsra":
+        case "scttsra":
+        case "nscttsra":
+        case "hi_tsra":
+        case "hi_ntsra":
+        case "fc":
+        case "nfc":
+        case "tor":
+        case "ntor":
+        case "hur_warn":
+        case "hur_watch":
+        case "ts_warn":
+        case "ts_watch":
+        case "ts_nowarn":
+            applyTheme("thunderstorm");
+            break;
+        case "du":
+        case "ndu":
+        case "fu":
+        case "nfu":
+        case "hz":
+            applyTheme("mist");
+            break;
+        case "ra_sn":
+        case "nra_sn":
+        case "fzra_sn":
+        case "nfzra_sn":
+        case "ip":
+        case "nip":
+        case "snip":
+        case "nsnip":
+        case "cold":
+        case "ncold":
+        case "blizzard":
+        case "nblizzard":
+        case "fg":
+        case "nfg":
+            applyTheme("snow");
+            break;
+        default:
+            applyTheme("default");
+    }
+}
 
 
 
