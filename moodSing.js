@@ -532,7 +532,12 @@ $("#genre-form").on("submit", async function(event) {
 
 $("#smile-btn").on("click", function (event) {
     event.preventDefault();
-    startHide()
-    $("#mood-prompt").toggle()
-  })
+    if(userForecast == null){
+        M.toast({ html: "Please click accept!" })
+        return
+    } else {
+        startHide()
+        $("#mood-prompt").toggle()
+    }
+})
   
