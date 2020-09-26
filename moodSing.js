@@ -269,16 +269,26 @@ const getSong = (genre, keyword) => {
 // Generates seed songs for the recommendations based on chosen genre, weather, and mood
 const getSeedMusic = (genre, weather, mood) => {
     trimmedWeather = weather.split(" ")[0];
-    return new Promise((resolve, reject) => {
-        getSong(genre, trimmedWeather).then(weatherSong => {
-            getSong(genre, mood).then(moodSong => {
-                resolve([weatherSong, moodSong]);
+    return new Promise(async(resolve, reject) => {
+        let finalWeatherSong = "";
+        await getSong(genre, trimmedWeather).then(weatherSong => {
+            finalWeatherSong = weatherSong;
+        }).catch(async error => {
+            await getSong(genre, "").then(genreSong => {
+                finalWeatherSong = genreSong;
             }).catch(error => {
-                resolve([weatherSong]);
+                finalWeatherSong = "03UrZgTINDqvnUMbbIMhql"; // Don't Stop Believin'
             })
-        }).catch(error => {
-            reject("No songs found!");
         })
+
+        await getSong(genre, mood).then(moodSong => {
+            resolve([finalWeatherSong, moodSong]);
+        }).catch(async error => {
+            await getSong(genre, "").then(genreSong => {
+                resolve[finalWeatherSong, "4bHsxqR3GMrXTxEPLuK5ue"]; // Gangnam Style
+            })
+        })
+
     })
 }
 
@@ -305,6 +315,7 @@ const getMoodSingRecommendations = (genre, weather, mood) => {
         let moodParams = moodMatcher(mood);
 
         let query = `seed_tracks=${seedMusic[0]},${seedMusic[1]}` +
+            `&seed_genres=${genre}` +
             `&target_valence=${moodParams.valence}` +
             `&target_energy=${moodParams.energy}` +
             `&target_tempo=${moodParams.tempo}` +
