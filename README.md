@@ -23,6 +23,8 @@ Thank you to the developers of the following APIs for making moodSing possible!
 
 [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 
+And thank you to the researchers who provided us with the information necessary to map moods to music! (See [Citations Below](#citations))
+
 ## Status
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/mrjcowman/moodSing?include_prereleases&style=for-the-badge)
 ![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/mrjcowman/moodSing?style=for-the-badge)
