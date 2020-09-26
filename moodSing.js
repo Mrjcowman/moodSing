@@ -529,3 +529,15 @@ $("#genre-form").on("submit", async function(event) {
         return
     }
 })
+
+$("#smile-btn").on("click", function (event) {
+    event.preventDefault();
+    if(userForecast == null){
+        M.toast({ html: "Please click accept!" })
+        return
+    } else {
+        startHide()
+        $("#mood-prompt").toggle()
+    }
+})
+  
