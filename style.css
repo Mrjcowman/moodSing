@@ -195,7 +195,11 @@ footer.sunny {
 /* Rain Theme:  */
 
 main.rain {
-    background: #949FA6;
+    background: #F0F2F2;
+    background: url(images/rain.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.rain,
@@ -209,7 +213,20 @@ footer.rain {
 }
 
 .prompt.rain {
+    background: #949FA6;
+}
+
+.rain button {
+    background: #949FA6;
+    color: #2B4032;
+}
+
+.rain.progress {
     background: #F0F2F2;
+}
+
+.rain .indeterminate {
+    background: #2B4032;
 }
 
 
