@@ -5,34 +5,44 @@ body {
     flex-direction: column;
 }
 
-
+nav {
+    min-height: 80px;
+}
 
 main {
     flex: 1 0 auto;
 }
 
+
 footer {
-    min-height: 30px;
+    min-height: 50px;
+    text-align: center;
    
 }
+
+
 
 #logo {
     width: 60px;
     height: 60px;
     position: relative;
-    top: 50%;   
+    top: 10px;
 }
 
 .box {
-    position: fixed;
-    height: 350px;
-    width: 700px;
     text-align: center;
     border-radius: 25px;
-    padding: 20px;
-    font-family: 'Roboto', sans-serif;
+    height: 80%;
+    margin-top: 30px;
+    padding: 20px;       
+}
+p {    font-family: 'Roboto', sans-serif;
 }
 
+iframe {
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
 #playList {
     text-align: center;
@@ -47,6 +57,7 @@ footer {
 
 #userForecast {
     text-align: center;
+    background: #F2DC6D;
     border-radius: 25px;
     padding: 5px 5px;
     height: 200px;
@@ -61,16 +72,14 @@ footer {
 }
 
 
+
 /* ====================THEMES==================== */
 
 
 /* Default Theme: */
 
-/* .default {
-    background: #B0B7BF;
-} */
 main.default {
-   background: #B0B7BF;
+    background: #B0B7BF;
 }
 
 .prompt.default {
@@ -120,7 +129,7 @@ footer.sunny {
 
 .box.sunny {
     background: #034AA6;
-    color:#F0F2F2;
+    color: #E2DAFE;
 }
 
 .prompt.sunny {
@@ -132,19 +141,16 @@ footer.sunny {
 
 main.rain {
     background: #949FA6;
-    
-    
 }
 
 nav.rain,
 footer.rain {
-    background:#395059;
+    background: #395059;
 }
 
 .box.rain {
     background: #2B4032;
     color:#F0F2F2;
-    
 }
 
 .prompt.rain {
@@ -173,6 +179,9 @@ footer.partlyCloudy {
     background: #023859;
 }
 
+
+
+
 /* thunderstorm theme */
 
 main.thunderstorm {
@@ -186,7 +195,7 @@ footer.thunderstorm {
 
 .box.thunderstorm {
     background: #171726;
-    color:#F0F2F2;
+    color:#E2DAFE;
 }
 
 .prompt.thunderstorm {
