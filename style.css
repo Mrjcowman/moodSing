@@ -106,11 +106,24 @@ footer.default {
     background: #F2DC6D;
 }
 
+.default button {
+    background: #022340;
+    color: #B0B7BF;
+}
+
+.progress.default {
+    background: #022340;
+}
+
+.default .indeterminate {
+    background: #F2DC6D;
+}
+
 
 /* Few Clouds Theme: */
 
 main.fewClouds {
-    background: #E2DAFE;
+    background: url(images/fewClouds.jpg);
 }
 
 nav.fewClouds,
@@ -119,13 +132,25 @@ footer.fewClouds {
 }
 
 .box.fewClouds {
-    background: #0186FC;
+    background: #E2DAFE;
 }
 
 .prompt.fewClouds {
     background: #83B8FE;
 }
 
+.fewClouds button {
+    background: #0186FC;
+    color: #E2DAFE;
+}
+
+.fewClouds.progress {
+    background: #E2DAFE;
+}
+
+.fewClouds .indeterminate {
+    background: #0186FC;
+}
 
 /* Sunny Theme: */
 
