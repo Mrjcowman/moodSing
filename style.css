@@ -50,6 +50,17 @@ iframe {
     overflow: hidden;
   }
 
+#playListLoading {
+    text-align: center;
+    border-radius: 25px;
+    padding: 5px 5px;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    margin-top: 30px ;
+
+}
+
 #playList {
     text-align: center;
     border-radius: 25px;

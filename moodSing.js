@@ -1,10 +1,11 @@
-let GLOBAL_DEV_MODE = false; // TODO: On Deploy, change this to false
+let GLOBAL_DEV_MODE = true; // TODO: On Deploy, change this to false
 let GLOBAL_SPOTIFY_ENABLED = true;
 
 let userForecast,
     userMood,
     userGenre;
 
+let songsLeftToLoad = 0;
 
 // Closure for the Access Token to keep it from being directly accessed by user
 function makeAccessToken(accessToken) {
@@ -339,18 +340,28 @@ function startHide() {
     $("#weather-approval").hide()
     $("#mood-prompt").hide()
     $("#genre-prompt").hide()
+    $("#playListLoading").hide()
     $("#playList").hide()
     $("#userForecast").hide()
 }
 
 function genSpot(trackArray) {
-    $("#playList").toggle()
+    $("#playListLoading").show();
+    songsLeftToLoad = trackArray.length;
     console.log("trackArray: " + trackArray)
     trackArray.forEach(track => {
         console.log(track);
         let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
         $("#playList").append(spotify)
+        spotify.find("iframe").on("load", event=>{
+            songsLeftToLoad --;
+            if(songsLeftToLoad==0){
+                $("#playListLoading").hide();
+                $("#playList").show();
+            }
+        })
     });
+    
 }
 
 
