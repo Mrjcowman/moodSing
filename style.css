@@ -124,6 +124,9 @@ footer.default {
 
 main.fewClouds {
     background: url(images/fewClouds.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.fewClouds,
@@ -155,21 +158,37 @@ footer.fewClouds {
 /* Sunny Theme: */
 
 main.sunny {
-    background: #F2CB05
+    background: #034AA6;
+    background: url(images/sunny.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.sunny,
 footer.sunny {
-    background: #59A8D9;
+    background: #59A8D9aa;
 }
 
 .box.sunny {
-    background: #034AA6;
-    color: #E2DAFE;
+    background: #F2CB05;
+    color: black;
 }
 
 .prompt.sunny {
     background: #0477BF;
+}
+
+.sunny button {
+    background: #0477BF;
+}
+
+.sunny.progress {
+    background: #59A8D9;
+}
+
+.sunny .indeterminate {
+    background: #F2CB05;
 }
 
 
