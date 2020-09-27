@@ -1,5 +1,4 @@
 body {
-    background: #B0B7BF;
     font-family: 'poiret one', cursive;
     display: flex;
     min-height: 100vh;
@@ -7,7 +6,6 @@ body {
 }
 
 nav {
-    background: #022340;
     min-height: 80px;
 }
 
@@ -17,7 +15,6 @@ main {
 
 
 footer {
-    background: #022340;
     min-height: 50px;
     text-align: center;
    
@@ -33,16 +30,13 @@ footer {
 }
 
 .box {
-   
-    /* position: fixed;
-    transform: translate(-50%, -50%); */
     text-align: center;
     border-radius: 25px;
-    border: 2px solid #F2DC6D;
     height: 80%;
     margin-top: 30px;
-    padding: 20px;   
-    
+    padding: 20px;       
+}
+p {    font-family: 'Roboto', sans-serif;
 }
 
 iframe {
@@ -95,7 +89,7 @@ iframe {
 
 /* Default Theme: */
 
-.default {
+main.default {
     background: #B0B7BF;
 }
 
@@ -115,7 +109,7 @@ footer.default {
 
 /* Few Clouds Theme: */
 
-.fewClouds {
+main.fewClouds {
     background: #E2DAFE;
 }
 
@@ -135,7 +129,7 @@ footer.fewClouds {
 
 /* Sunny Theme: */
 
-.sunny {
+main.sunny {
     background: #F2CB05
 }
 
@@ -146,6 +140,7 @@ footer.sunny {
 
 .box.sunny {
     background: #034AA6;
+    color: #E2DAFE;
 }
 
 .prompt.sunny {
@@ -155,17 +150,18 @@ footer.sunny {
 
 /* Rain Theme:  */
 
-.rain {
-    background: #395059;
+main.rain {
+    background: #949FA6;
 }
 
 nav.rain,
 footer.rain {
-    background: #949FA6;
+    background: #395059;
 }
 
 .box.rain {
     background: #2B4032;
+    color:#F0F2F2;
 }
 
 .prompt.rain {
@@ -175,7 +171,7 @@ footer.rain {
 
 /* /* Partly Cloudy Theme:  */
 
-.partlyCloudy {
+main.partlyCloudy {
     background: #6387A6;
 }
 
@@ -199,7 +195,7 @@ footer.partlyCloudy {
 
 /* thunderstorm theme */
 
-.thunderstorm {
+main.thunderstorm {
     background: #A692A2;
 }
 
@@ -210,6 +206,7 @@ footer.thunderstorm {
 
 .box.thunderstorm {
     background: #171726;
+    color:#E2DAFE;
 }
 
 .prompt.thunderstorm {
@@ -221,7 +218,7 @@ footer.thunderstorm {
 
 
 /* mist theme */
-.mist {
+main.mist {
     background: #3E5956;
 }
 
@@ -241,7 +238,7 @@ footer.mist {
 
  /* Snow Theme:  */
 
-.snow {
+main.snow {
     background: #7C92A6;
 }
 
