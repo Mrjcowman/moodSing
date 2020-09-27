@@ -5,6 +5,7 @@ let userForecast,
     userMood,
     userGenre;
 
+
 // Closure for the Access Token to keep it from being directly accessed by user
 function makeAccessToken(accessToken) {
     let aT = accessToken;
@@ -87,20 +88,20 @@ init()
 
 function browserSupportsGeolocation() {
     if (navigator.geolocation) {
-        $("#weather-approval").toggle();
+        $("#weather-approval").show();
     } else {
         // Latitude and longitude of UW Campus
-        hidePrompt($("#weather-approval"));
+        $("#weather-approval").hide();
         console.log("Does not support geo");
         console.log(47.655548, -122.303200);
     }
 }
 
 function weatherForecast() {
-    progressBar($("#weather-approval"))
+    $("#loadingbar").show();
     let positionStart,
         geoSuccess = function(position) {
-            $("#weather-approval").toggle();
+            $("#weather-approval").hide();
             positionStart = position;
             let lat = positionStart.coords.latitude,
                 lon = positionStart.coords.longitude;
@@ -108,7 +109,7 @@ function weatherForecast() {
             gridLocater(lat, lon);
         },
         geoError = function(error) {
-            $("#weather-approval").toggle();
+            $("#weather-approval").hide();
             switch (error.code) {
                 case error.TIMEOUT:
                     console.log("Timed Out Reload");
@@ -151,7 +152,8 @@ function gridLocater(lat, lon) {
 function localForecast(grid) {
     $.get(`https://api.weather.gov/gridpoints/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`, function(forecast) {
         console.log(forecast.properties.periods[0].shortForecast);
-        $("#mood-prompt").toggle()
+        $("#loadingbar").hide();
+        $("#mood-prompt").show()
         userForecast = forecast.properties.periods[0].shortForecast
         renderWeatherTheme(forecast.properties.periods[0].icon)
     });
@@ -333,18 +335,12 @@ function renderWeatherTheme(imageUrl) {
 //        -mood
 // render playlists
 function startHide() {
+    $("#loadingbar").hide()
     $("#weather-approval").hide()
     $("#mood-prompt").hide()
     $("#genre-prompt").hide()
     $("#playList").hide()
     $("#userForecast").hide()
-}
-
-function progressBar(elementID) {
-    let indeterminate = $("<div>").addClass("indeterminate"),
-        progress = $("<div>").addClass("progress");
-    progress.append(indeterminate);
-    elementID.append(progress);
 }
 
 function genSpot(trackArray) {
@@ -507,9 +503,9 @@ $("#mood-form").on("submit", function(event) {
     event.preventDefault();
     if (mood.some(function(el) { return el.moodType === $("#mood-input").val().toLowerCase() })) {
         userMood = $("#mood-input").val()
-        $("#mood-prompt").toggle()
+        $("#mood-prompt").hide()
         console.log(userMood);
-        $("#genre-prompt").toggle()
+        $("#genre-prompt").show()
     } else {
         M.toast({ html: "Please enter a mood we have mapped" })
         return
@@ -521,7 +517,7 @@ $("#genre-form").on("submit", async function(event) {
 
     if (genreList.some(function(el) { return el.genreType === $("#genre-input").val().toLowerCase() })) {
         userGenre = $("#genre-input").val()
-        $("#genre-prompt").toggle()
+        $("#genre-prompt").hide()
         console.log(userGenre);
         getMoodSingRecommendations(userGenre, userForecast, userMood).then(recs => genSpot(recs));
     } else {
@@ -537,7 +533,7 @@ $("#smile-btn").on("click", function (event) {
         return
     } else {
         startHide()
-        $("#mood-prompt").toggle()
+        $("#mood-prompt").show()
     }
 })
   
