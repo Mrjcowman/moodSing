@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- font  -->
-  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto&display=swap" rel="stylesheet">
   <!-- materializecss -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -22,7 +22,7 @@
 <body>
 
   <!-- <div class="logo"><a href="#"><img src="images/favicon.png"></a></div>   -->
-  <nav>
+  <nav class="default">
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo"><img src="images/favicon.png" id="logo">moodSing</a>
       <ul class="right">
@@ -36,7 +36,7 @@
   
 
 
-  <main>
+  <main class="default">
     <!-- weather approval -->
     <div class="container" id="weather-approval">
       <div class="col s12 m6">
@@ -59,8 +59,9 @@
             <p>Woohoo! Next step is your mood. What mood are you in today?</p>
           <form class="row" id="mood-form">
             <div class="input-field col m6 offset-m3 s12">
-              <input value="" id="mood-input" type="text" class="mood-autocomplete validate">
+              <input value="" id="mood-input" type="text" class="mood-autocomplete validate">              
               <label for="mood-input" class="active">Mood</label>
+              <button class="btn-floating btn-small waves-effect waves-light teal lighten-2"><i class="material-icons">add</i></button>
             </div>
           </form>
         </div>
@@ -70,7 +71,7 @@
 
     <!-- prompt for genre choices  -->
     <div class="container" id="genre-prompt">
-      
+      <div class="row">
       <div class="col s12 m6">
         <div class="box default">
           <div class="card-content">
@@ -79,8 +80,10 @@
             <div class="input-field col m6 offset-m3 s12">
               <input value="" id="genre-input" type="text" class="genre-autocomplete validate">
               <label for="genre-input" class="active">Genre</label>
+              <button class="btn-floating btn-small waves-effect waves-light teal lighten-2"><i class="material-icons">add</i></button>
             </div>
           </form>
+        </div>
         </div>
       </div>
       </div>
@@ -122,9 +125,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./genreAutoComplete.js"></script>
   <script src="./moodAutoComplete.js"></script>
-  <script src="genre.js"></script>
   <script src="mood.js"></script>
   <script src="moodSing.js"></script>
+  <script src="genre.js"></script>
 
 </body>
 

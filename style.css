@@ -1,54 +1,38 @@
 body {
-    background: #B0B7BF;
     font-family: 'poiret one', cursive;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
-nav {
-    background: #022340;
-    min-height: 80px;
-}
+
 
 main {
     flex: 1 0 auto;
 }
 
-
 footer {
-    background: #022340;
-    min-height: 50px;
-    text-align: center;
+    min-height: 30px;
    
 }
-
-
 
 #logo {
     width: 60px;
     height: 60px;
     position: relative;
-    top: 10px;
+    top: 50%;   
 }
 
 .box {
-   
-    /* position: fixed;
-    transform: translate(-50%, -50%); */
+    position: fixed;
+    height: 350px;
+    width: 700px;
     text-align: center;
     border-radius: 25px;
-    border: 2px solid #F2DC6D;
-    height: 80%;
-    margin-top: 30px;
-    padding: 20px;   
-    
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
 }
 
-iframe {
-    border-radius: 10px;
-    overflow: hidden;
-  }
 
 #playList {
     text-align: center;
@@ -63,7 +47,6 @@ iframe {
 
 #userForecast {
     text-align: center;
-    background: #F2DC6D;
     border-radius: 25px;
     padding: 5px 5px;
     height: 200px;
@@ -78,14 +61,16 @@ iframe {
 }
 
 
-
 /* ====================THEMES==================== */
 
 
 /* Default Theme: */
 
-.default {
+/* .default {
     background: #B0B7BF;
+} */
+main.default {
+   background: #B0B7BF;
 }
 
 .prompt.default {
@@ -104,7 +89,7 @@ footer.default {
 
 /* Few Clouds Theme: */
 
-.fewClouds {
+main.fewClouds {
     background: #E2DAFE;
 }
 
@@ -124,7 +109,7 @@ footer.fewClouds {
 
 /* Sunny Theme: */
 
-.sunny {
+main.sunny {
     background: #F2CB05
 }
 
@@ -135,6 +120,7 @@ footer.sunny {
 
 .box.sunny {
     background: #034AA6;
+    color:#F0F2F2;
 }
 
 .prompt.sunny {
@@ -144,17 +130,21 @@ footer.sunny {
 
 /* Rain Theme:  */
 
-.rain {
-    background: #395059;
+main.rain {
+    background: #949FA6;
+    
+    
 }
 
 nav.rain,
 footer.rain {
-    background: #949FA6;
+    background:#395059;
 }
 
 .box.rain {
     background: #2B4032;
+    color:#F0F2F2;
+    
 }
 
 .prompt.rain {
@@ -164,7 +154,7 @@ footer.rain {
 
 /* /* Partly Cloudy Theme:  */
 
-.partlyCloudy {
+main.partlyCloudy {
     background: #6387A6;
 }
 
@@ -183,12 +173,9 @@ footer.partlyCloudy {
     background: #023859;
 }
 
-
-
-
 /* thunderstorm theme */
 
-.thunderstorm {
+main.thunderstorm {
     background: #A692A2;
 }
 
@@ -199,6 +186,7 @@ footer.thunderstorm {
 
 .box.thunderstorm {
     background: #171726;
+    color:#F0F2F2;
 }
 
 .prompt.thunderstorm {
@@ -210,7 +198,7 @@ footer.thunderstorm {
 
 
 /* mist theme */
-.mist {
+main.mist {
     background: #3E5956;
 }
 
@@ -230,7 +218,7 @@ footer.mist {
 
  /* Snow Theme:  */
 
-.snow {
+main.snow {
     background: #7C92A6;
 }
 
