@@ -135,11 +135,11 @@ footer.fewClouds {
 }
 
 .box.fewClouds {
-    background: #E2DAFE;
+    background: #E2DAFEDD;
 }
 
 .prompt.fewClouds {
-    background: #83B8FE;
+    background: #83B8FEDD;
 }
 
 .fewClouds button {
@@ -167,16 +167,16 @@ main.sunny {
 
 nav.sunny,
 footer.sunny {
-    background: #59A8D9aa;
+    background: #59A8D9;
 }
 
 .box.sunny {
-    background: #F2CB05;
+    background: #F2CB05DD;
     color: black;
 }
 
 .prompt.sunny {
-    background: #0477BF;
+    background: #0477BFDD;
 }
 
 .sunny button {
@@ -208,12 +208,12 @@ footer.rain {
 }
 
 .box.rain {
-    background: #2B4032;
+    background: #2B4032DD;
     color:#F0F2F2;
 }
 
 .prompt.rain {
-    background: #949FA6;
+    background: #949FA6DD;
 }
 
 .rain button {
@@ -273,6 +273,10 @@ footer.partlyCloudy {
 
 main.thunderstorm {
     background: #A692A2;
+    background: url(images/thunderstorm.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.thunderstorm,
@@ -281,21 +285,37 @@ footer.thunderstorm {
 }
 
 .box.thunderstorm {
-    background: #171726;
+    background: #171726DD;
     color:#E2DAFE;
 }
 
 .prompt.thunderstorm {
-    background: #534A59;
+    background: #534A59DD;
+    color:#E2DAFE;
 }
 
+.thunderstorm button {
+    background: #E2DAFE;
+    color: #171726;
+}
 
+.thunderstorm.progress {
+    background: #171726;
+}
+
+.thunderstorm .indeterminate {
+    background: #E2DAFE;
+}
 
 
 
 /* mist theme */
 main.mist {
     background: #3E5956;
+    background: url(images/mist.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.mist,
@@ -304,18 +324,35 @@ footer.mist {
 }
 
 .box.mist { 
-    background: #BFAF8F;
+    background: #BFAF8FDD;
     
 }
 
 .prompt.mist {
+    background: #3E5956DD;
+}
+
+.mist button {
     background: #3E5956;
+    color: #BFAF8F;
+}
+
+.mist.progress {
+    background: #142626;
+}
+
+.mist .indeterminate {
+    background: #F2DAC4;
 }
 
  /* Snow Theme:  */
 
 main.snow {
     background: #7C92A6;
+    background: url(images/snow.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.snow,
@@ -324,10 +361,22 @@ footer.snow {
 }
 
 .box.snow {
-    background: #DCE8F2;
+    background: #DCE8F2DD;
 }
 
 .prompt.snow {
-    background: #BACBD9;
+    background: #BACBD9DD;
 }
 
+.snow button {
+    background: #7C92A6;
+    color: #0D0D0D;
+}
+
+.snow.progress {
+    background: #0D0D0D;
+}
+
+.snow .indeterminate {
+    background: #7C92A6;
+}
