@@ -63,7 +63,6 @@ const getSong = (genre, keyword) => {
             .then(response => {
                 return response.json();
             }).then(data => {
-                console.log(data)
                 if (data.tracks.items[0]) {
                     let id = data.tracks.items[0].id;
                     console.log("SONG GET: GENRE - " + genre + " KEYWORD - " + keyword + " ID - " + id)
@@ -197,7 +196,6 @@ function weatherForecast() {
             positionStart = position;
             let lat = positionStart.coords.latitude,
                 lon = positionStart.coords.longitude;
-            console.log(lat, lon);
             gridLocater(lat, lon);
         },
         geoError = function(error) {
@@ -238,7 +236,7 @@ function gridLocater(lat, lon) {
 
 function localForecast(grid) {
     $.get(`https://api.weather.gov/gridpoints/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`, function(forecast) {
-        console.log(forecast.properties.periods[0].shortForecast);
+        console.log("Weather: "+forecast.properties.periods[0].shortForecast);
         $("#loadingbar").hide();
         $("#mood-prompt").show()
         userForecast = forecast.properties.periods[0].shortForecast
@@ -294,8 +292,6 @@ function renderWeatherTheme(imageUrl) {
     // Extract the image file name from the forecast for easy weather/theme mapping
     let splitUrl = imageUrl.split("?")[0].split("/");
     let imageFileName = splitUrl[splitUrl.length - 1].split(",")[0];
-
-    console.log(imageFileName);
 
     switch (imageFileName) {
         case "few":
@@ -421,11 +417,12 @@ function startHide() {
 function genSpot(trackArray) {
     $("#playListLoading").show();
     songsLeftToLoad = trackArray.length;
-    console.log("trackArray: " + trackArray)
+
     trackArray.forEach(track => {
-        console.log(track);
         let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
         $("#playList").append(spotify)
+
+        // When all widgets are done loading, show the playlist
         spotify.find("iframe").on("load", event=>{
             songsLeftToLoad --;
             if(songsLeftToLoad==0){
@@ -449,7 +446,7 @@ $("#mood-form").on("submit", function(event) {
     if (mood.some(function(el) { return el.moodType === $("#mood-input").val().toLowerCase() })) {
         userMood = $("#mood-input").val()
         $("#mood-prompt").hide()
-        console.log(userMood);
+        console.log("Mood: "+userMood);
         $("#genre-prompt").show()
     } else {
         M.toast({ html: "Please enter a mood we have mapped" })
@@ -463,7 +460,7 @@ $("#genre-form").on("submit", async function(event) {
     if (genreList.some(function(el) { return el.genreType === $("#genre-input").val().toLowerCase() })) {
         userGenre = $("#genre-input").val()
         $("#genre-prompt").hide()
-        console.log(userGenre);
+        console.log("Genre: "+userGenre);
         getMoodSingRecommendations(userGenre, userForecast, userMood).then(recs => genSpot(recs));
     } else {
         M.toast({ html: "Please enter a genre we have mapped" })
