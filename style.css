@@ -234,6 +234,10 @@ footer.rain {
 
 main.partlyCloudy {
     background: #6387A6;
+    background: url(images/partlyCloudy.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.partlyCloudy,
@@ -243,15 +247,26 @@ footer.partlyCloudy {
 }
 
 .box.partlyCloudy {
-    background: lightgoldenrodyellow;
+    background: #BABDBFDD;
 }
 
 .prompt.partlyCloudy {
-    
-    background: #023859;
+    background: #023859DD;
+    color: white;
 }
 
+.partlyCloudy button {
+    background: #024059;
+    color: #BABDBF;
+}
 
+.partlyCloudy.progress {
+    background: #BABDBF;
+}
+
+.partlyCloudy .indeterminate {
+    background: #6387A6;
+}
 
 
 /* thunderstorm theme */
