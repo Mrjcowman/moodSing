@@ -5,6 +5,8 @@ let userForecast,
     userMood,
     userGenre;
 
+let songsLeftToLoad = 0;
+
 // Closure for the Access Token to keep it from being directly accessed by user
 function makeAccessToken(accessToken) {
     let aT = accessToken;
@@ -15,48 +17,27 @@ function makeAccessToken(accessToken) {
     return getAccessToken;
 }
 
-
 let getAccessToken = () => { return null };
-
-// Get the Access Token from Spotify to use for the rest of the Spotify calls
-// TODO: Move this to the MoodSingCure API
-const requestSpotifyAccessToken = (appId) => {
-    fetch("https://accounts.spotify.com/api/token", {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "Basic " + appId
-        },
-        body: "grant_type=client_credentials"
-    }).then(response => {
-        return response.json();
-    }).then(data => {
-        console.log("Access Token Retrieved!");
-        getAccessToken = makeAccessToken(data.access_token);
-    }).catch(error => {
-        GLOBAL_DEV_MODE = true;
-        GLOBAL_SPOTIFY_ENABLED = false;
-    })
-}
 
 // Get the authorization from moodSingCure, then send it to Spotify with requestSpotifyAccessToken
 const getSpotifyAuthorization = (devMode = false) => {
-    console.log("Getting appId!");
+    console.log("Getting authorization!");
     // Fetch the encoded authorization token from moodSingCure, or localhost if devMode is true
     fetch(
-            devMode ? "http://localhost:5000/appid" :
-            "https://mood-sing-cure.herokuapp.com/appid", { mode: ("cors") })
+            devMode ? "http://localhost:5000/accessToken" :
+            "https://mood-sing-cure.herokuapp.com/accessToken", { mode: ("cors") })
         .then(response => {
+            console.log("Response retrieved!");
             return response.json()
         }).then(data => {
-            if (!data.appId) throw new Error("No Spotify Token found!");
+            if (!data.accessToken) throw new Error("No Spotify Token found!");
 
             console.log(data);
 
-            if (data.appId != "null" && data.appId != null) {
-                console.log("appId successfully retrieved!");
+            if (data.accessToken != "null" && data.accessToken != null) {
+                console.log("Access Token successfully retrieved!");
 
-                requestSpotifyAccessToken(data.appId);
+                getAccessToken = makeAccessToken(data.accessToken);
 
             } else {
                 throw new Error("Could not access Spotify Token! Null Token found");
@@ -64,7 +45,7 @@ const getSpotifyAuthorization = (devMode = false) => {
         }).catch(error => {
             GLOBAL_DEV_MODE = true;
             GLOBAL_SPOTIFY_ENABLED = false;
-            console.log("Null token found!")
+            console.error("Null token found!")
         })
 }
 
@@ -87,20 +68,20 @@ init()
 
 function browserSupportsGeolocation() {
     if (navigator.geolocation) {
-        $("#weather-approval").toggle();
+        $("#weather-approval").show();
     } else {
         // Latitude and longitude of UW Campus
-        hidePrompt($("#weather-approval"));
+        $("#weather-approval").hide();
         console.log("Does not support geo");
         console.log(47.655548, -122.303200);
     }
 }
 
 function weatherForecast() {
-    progressBar($("#weather-approval"))
+    $("#loadingbar").show();
     let positionStart,
         geoSuccess = function(position) {
-            $("#weather-approval").toggle();
+            $("#weather-approval").hide();
             positionStart = position;
             let lat = positionStart.coords.latitude,
                 lon = positionStart.coords.longitude;
@@ -108,7 +89,7 @@ function weatherForecast() {
             gridLocater(lat, lon);
         },
         geoError = function(error) {
-            $("#weather-approval").toggle();
+            $("#weather-approval").hide();
             switch (error.code) {
                 case error.TIMEOUT:
                     console.log("Timed Out Reload");
@@ -151,7 +132,8 @@ function gridLocater(lat, lon) {
 function localForecast(grid) {
     $.get(`https://api.weather.gov/gridpoints/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`, function(forecast) {
         console.log(forecast.properties.periods[0].shortForecast);
-        $("#mood-prompt").toggle()
+        $("#loadingbar").hide();
+        $("#mood-prompt").show()
         userForecast = forecast.properties.periods[0].shortForecast
         renderWeatherTheme(forecast.properties.periods[0].icon)
     });
@@ -333,28 +315,32 @@ function renderWeatherTheme(imageUrl) {
 //        -mood
 // render playlists
 function startHide() {
+    $("#loadingbar").hide()
     $("#weather-approval").hide()
     $("#mood-prompt").hide()
     $("#genre-prompt").hide()
+    $("#playListLoading").hide()
     $("#playList").hide()
     $("#userForecast").hide()
 }
 
-function progressBar(elementID) {
-    let indeterminate = $("<div>").addClass("indeterminate"),
-        progress = $("<div>").addClass("progress");
-    progress.append(indeterminate);
-    elementID.append(progress);
-}
-
 function genSpot(trackArray) {
-    $("#playList").toggle()
+    $("#playListLoading").show();
+    songsLeftToLoad = trackArray.length;
     console.log("trackArray: " + trackArray)
     trackArray.forEach(track => {
         console.log(track);
         let spotify = $("<div>").addClass("col m6 s12").html(`<iframe src="https://open.spotify.com/embed/track/${track}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`)
         $("#playList").append(spotify)
+        spotify.find("iframe").on("load", event=>{
+            songsLeftToLoad --;
+            if(songsLeftToLoad==0){
+                $("#playListLoading").hide();
+                $("#playList").show();
+            }
+        })
     });
+    
 }
 
 
@@ -507,9 +493,9 @@ $("#mood-form").on("submit", function(event) {
     event.preventDefault();
     if (mood.some(function(el) { return el.moodType === $("#mood-input").val().toLowerCase() })) {
         userMood = $("#mood-input").val()
-        $("#mood-prompt").toggle()
+        $("#mood-prompt").hide()
         console.log(userMood);
-        $("#genre-prompt").toggle()
+        $("#genre-prompt").show()
     } else {
         M.toast({ html: "Please enter a mood we have mapped" })
         return
@@ -521,7 +507,7 @@ $("#genre-form").on("submit", async function(event) {
 
     if (genreList.some(function(el) { return el.genreType === $("#genre-input").val().toLowerCase() })) {
         userGenre = $("#genre-input").val()
-        $("#genre-prompt").toggle()
+        $("#genre-prompt").hide()
         console.log(userGenre);
         getMoodSingRecommendations(userGenre, userForecast, userMood).then(recs => genSpot(recs));
     } else {
@@ -529,3 +515,15 @@ $("#genre-form").on("submit", async function(event) {
         return
     }
 })
+
+$("#smile-btn").on("click", function (event) {
+    event.preventDefault();
+    if(userForecast == null){
+        M.toast({ html: "Please click accept!" })
+        return
+    } else {
+        startHide()
+        $("#mood-prompt").show()
+    }
+})
+  

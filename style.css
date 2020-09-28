@@ -1,5 +1,4 @@
 body {
-    background: #B0B7BF;
     font-family: 'poiret one', cursive;
     display: flex;
     min-height: 100vh;
@@ -7,7 +6,6 @@ body {
 }
 
 nav {
-    background: #022340;
     min-height: 80px;
 }
 
@@ -17,7 +15,6 @@ main {
 
 
 footer {
-    background: #022340;
     min-height: 50px;
     text-align: center;
    
@@ -33,22 +30,30 @@ footer {
 }
 
 .box {
-   
-    /* position: fixed;
-    transform: translate(-50%, -50%); */
     text-align: center;
     border-radius: 25px;
-    border: 2px solid #F2DC6D;
     height: 80%;
     margin-top: 30px;
-    padding: 20px;   
-    
+    padding: 20px;       
+}
+p {    font-family: 'Roboto', sans-serif;
 }
 
 iframe {
     border-radius: 10px;
     overflow: hidden;
   }
+
+#playListLoading {
+    text-align: center;
+    border-radius: 25px;
+    padding: 5px 5px;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    margin-top: 30px ;
+
+}
 
 #playList {
     text-align: center;
@@ -84,7 +89,7 @@ iframe {
 
 /* Default Theme: */
 
-.default {
+main.default {
     background: #B0B7BF;
 }
 
@@ -101,11 +106,27 @@ footer.default {
     background: #F2DC6D;
 }
 
+.default button {
+    background: #022340;
+    color: #B0B7BF;
+}
+
+.progress.default {
+    background: #022340;
+}
+
+.default .indeterminate {
+    background: #F2DC6D;
+}
+
 
 /* Few Clouds Theme: */
 
-.fewClouds {
-    background: #E2DAFE;
+main.fewClouds {
+    background: url(images/fewClouds.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.fewClouds,
@@ -114,18 +135,34 @@ footer.fewClouds {
 }
 
 .box.fewClouds {
-    background: #0186FC;
+    background: #E2DAFEDD;
 }
 
 .prompt.fewClouds {
-    background: #83B8FE;
+    background: #83B8FEDD;
 }
 
+.fewClouds button {
+    background: #0186FC;
+    color: #E2DAFE;
+}
+
+.fewClouds.progress {
+    background: #E2DAFE;
+}
+
+.fewClouds .indeterminate {
+    background: #0186FC;
+}
 
 /* Sunny Theme: */
 
-.sunny {
-    background: #F2CB05
+main.sunny {
+    background: #034AA6;
+    background: url(images/sunny.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.sunny,
@@ -134,38 +171,73 @@ footer.sunny {
 }
 
 .box.sunny {
-    background: #034AA6;
+    background: #F2CB05DD;
+    color: black;
 }
 
 .prompt.sunny {
+    background: #0477BFDD;
+}
+
+.sunny button {
     background: #0477BF;
+}
+
+.sunny.progress {
+    background: #59A8D9;
+}
+
+.sunny .indeterminate {
+    background: #F2CB05;
 }
 
 
 /* Rain Theme:  */
 
-.rain {
-    background: #395059;
+main.rain {
+    background: #F0F2F2;
+    background: url(images/rain.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.rain,
 footer.rain {
-    background: #949FA6;
+    background: #395059;
 }
 
 .box.rain {
-    background: #2B4032;
+    background: #2B4032DD;
+    color:#F0F2F2;
 }
 
 .prompt.rain {
+    background: #949FA6DD;
+}
+
+.rain button {
+    background: #949FA6;
+    color: #2B4032;
+}
+
+.rain.progress {
     background: #F0F2F2;
+}
+
+.rain .indeterminate {
+    background: #2B4032;
 }
 
 
 /* /* Partly Cloudy Theme:  */
 
-.partlyCloudy {
+main.partlyCloudy {
     background: #6387A6;
+    background: url(images/partlyCloudy.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.partlyCloudy,
@@ -175,21 +247,36 @@ footer.partlyCloudy {
 }
 
 .box.partlyCloudy {
-    background: lightgoldenrodyellow;
+    background: #BABDBFDD;
 }
 
 .prompt.partlyCloudy {
-    
-    background: #023859;
+    background: #023859DD;
+    color: white;
 }
 
+.partlyCloudy button {
+    background: #024059;
+    color: #BABDBF;
+}
 
+.partlyCloudy.progress {
+    background: #BABDBF;
+}
+
+.partlyCloudy .indeterminate {
+    background: #6387A6;
+}
 
 
 /* thunderstorm theme */
 
-.thunderstorm {
+main.thunderstorm {
     background: #A692A2;
+    background: url(images/thunderstorm.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.thunderstorm,
@@ -198,20 +285,37 @@ footer.thunderstorm {
 }
 
 .box.thunderstorm {
-    background: #171726;
+    background: #171726DD;
+    color:#E2DAFE;
 }
 
 .prompt.thunderstorm {
-    background: #534A59;
+    background: #534A59DD;
+    color:#E2DAFE;
 }
 
+.thunderstorm button {
+    background: #E2DAFE;
+    color: #171726;
+}
 
+.thunderstorm.progress {
+    background: #171726;
+}
+
+.thunderstorm .indeterminate {
+    background: #E2DAFE;
+}
 
 
 
 /* mist theme */
-.mist {
+main.mist {
     background: #3E5956;
+    background: url(images/mist.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.mist,
@@ -220,18 +324,35 @@ footer.mist {
 }
 
 .box.mist { 
-    background: #BFAF8F;
+    background: #BFAF8FDD;
     
 }
 
 .prompt.mist {
+    background: #3E5956DD;
+}
+
+.mist button {
     background: #3E5956;
+    color: #BFAF8F;
+}
+
+.mist.progress {
+    background: #142626;
+}
+
+.mist .indeterminate {
+    background: #F2DAC4;
 }
 
  /* Snow Theme:  */
 
-.snow {
+main.snow {
     background: #7C92A6;
+    background: url(images/snow.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 nav.snow,
@@ -240,10 +361,22 @@ footer.snow {
 }
 
 .box.snow {
-    background: #DCE8F2;
+    background: #DCE8F2DD;
 }
 
 .prompt.snow {
-    background: #BACBD9;
+    background: #BACBD9DD;
 }
 
+.snow button {
+    background: #7C92A6;
+    color: #0D0D0D;
+}
+
+.snow.progress {
+    background: #0D0D0D;
+}
+
+.snow .indeterminate {
+    background: #7C92A6;
+}

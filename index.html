@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- font  -->
-  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto&display=swap" rel="stylesheet">
   <!-- materializecss -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -22,7 +22,7 @@
 <body>
 
   <!-- <div class="logo"><a href="#"><img src="images/favicon.png"></a></div>   -->
-  <nav>
+  <nav class="default">
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo"><img src="images/favicon.png" id="logo">moodSing</a>
       <ul class="right">
@@ -36,7 +36,10 @@
   
 
 
-  <main>
+  <main class= "default">
+    <!-- Loading bar -->
+    <div class="progress default" id="loadingbar"><div class="indeterminate"></div></div>
+
     <!-- weather approval -->
     <div class="container" id="weather-approval">
       <div class="col s12 m6">
@@ -44,7 +47,7 @@
           <div class="card-content">
             <h3>Welcome to moodSing!</h3>
             <p>In order to use moodSing, we will need your location! Please accept so you can use this amazing app!</p>
-            <button class="waves-effect waves-effect btn #4db6ac teal lighten-2" id="accept-weather-btn">Accept</button>
+            <button class="waves-effect waves-effect btn #4db6ac" id="accept-weather-btn">Accept</button>
           </div>
         </div>
         </div>
@@ -59,8 +62,9 @@
             <p>Woohoo! Next step is your mood. What mood are you in today?</p>
           <form class="row" id="mood-form">
             <div class="input-field col m6 offset-m3 s12">
-              <input value="" id="mood-input" type="text" class="mood-autocomplete validate">
+              <input value="" id="mood-input" type="text" class="mood-autocomplete validate">              
               <label for="mood-input" class="active">Mood</label>
+              <button class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">arrow_forward</i></button>
             </div>
           </form>
         </div>
@@ -70,7 +74,6 @@
 
     <!-- prompt for genre choices  -->
     <div class="container" id="genre-prompt">
-      
       <div class="col s12 m6">
         <div class="box default">
           <div class="card-content">
@@ -79,6 +82,7 @@
             <div class="input-field col m6 offset-m3 s12">
               <input value="" id="genre-input" type="text" class="genre-autocomplete validate">
               <label for="genre-input" class="active">Genre</label>
+              <button class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">arrow_forward</i></button>
             </div>
           </form>
         </div>
@@ -91,6 +95,16 @@
       <div class="row">
         <div class="col s12 m5 prompt default"id="userForecast">
           <h1>Today's weather</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- playlist loading -->
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m5 prompt default"id="playListLoading">
+            <h2>Please wait, we're finding music for your mood...</h2>
+            <div class="progress default"><div class="indeterminate"></div></div>
         </div>
       </div>
     </div>
@@ -111,7 +125,7 @@
       <div class="row">
           <h3 class="white-text"><img src="images/favicon.png" id="logo">moodSing</h3>
     <div class="footer-copyright">
-      © 2020 moodSing Copyright
+      © moodSing 2020 Copyright
       <a class="grey-text text-lighten-4 right" href="https://github.com/Mrjcowman/moodSing">GitHub</a>
     </div>
       </div>
@@ -122,9 +136,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./genreAutoComplete.js"></script>
   <script src="./moodAutoComplete.js"></script>
-  <script src="genre.js"></script>
   <script src="mood.js"></script>
+  <script src="genre.js"></script>
   <script src="moodSing.js"></script>
+  
 
 </body>
 
