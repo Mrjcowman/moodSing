@@ -1,3 +1,5 @@
+// This document contains mood paramter mappings for a truly absurd number of words
+
 const mood = [
     {
         moodType: "aardvark",

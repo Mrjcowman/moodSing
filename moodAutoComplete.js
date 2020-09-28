@@ -1,3 +1,4 @@
+// This document is used to generate suggestions for the autocomplete element
 $(document).ready(function () {
     $('input.mood-autocomplete').autocomplete({
         data: {
